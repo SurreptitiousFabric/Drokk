@@ -1,0 +1,47 @@
+{
+  "operation": "User-supplied wallpaper PNGs copied unchanged",
+  "files": [
+    {
+      "name": "01-necropolis-towers.png",
+      "origin": "/home/swa/Downloads/Dredd-cityscape-shortlist/wallpapers-photorealistic/01-necropolis-towers.png",
+      "width": 1672,
+      "height": 941,
+      "sha256": "b4b5d6dbfcfa3d89b8ea8419adac26ab7845b0f914c32bfcc89e5e91d9498069"
+    },
+    {
+      "name": "02-necropolis-river.png",
+      "origin": "/home/swa/Downloads/Dredd-cityscape-shortlist/wallpapers-photorealistic/02-necropolis-river.png",
+      "width": 1672,
+      "height": 941,
+      "sha256": "2243e320b2a8f4369792681b320b196147d6cce87f984309e986c64f41febb21"
+    },
+    {
+      "name": "03-block-mania.png",
+      "origin": "/home/swa/Downloads/Dredd-cityscape-shortlist/wallpapers-photorealistic/03-block-mania.png",
+      "width": 1672,
+      "height": 941,
+      "sha256": "77b7200e1c1acc39228b8f42704806bbd9b40b121c366bb1b6c7d2c5e13b538f"
+    },
+    {
+      "name": "04-midnight-surfer.png",
+      "origin": "/home/swa/Downloads/Dredd-cityscape-shortlist/wallpapers-photorealistic/04-midnight-surfer.png",
+      "width": 1672,
+      "height": 941,
+      "sha256": "7dfc3c78b7d8043798914c917a209a4919ca3458699338060e5cf163ec4756ad"
+    },
+    {
+      "name": "05-graveyard-shift.png",
+      "origin": "/home/swa/Downloads/Dredd-cityscape-shortlist/wallpapers-photorealistic/05-graveyard-shift.png",
+      "width": 1672,
+      "height": 941,
+      "sha256": "47c7884e8648ce2ce88400f135f4bfa4f5699fdec7299a2bb4933ffefe84ba29"
+    },
+    {
+      "name": "06-giant-judge-liberty-and-shadowed-steps.png",
+      "origin": "/home/swa/Downloads/Giant Judge, Liberty, and Shadowed Steps.png",
+      "width": 1672,
+      "height": 940,
+      "sha256": "666bf6524dd9d714b400d3036ee4defe8835cf66e8bb8ee3ebadb764250692cd"
+    }
+  ]
+}

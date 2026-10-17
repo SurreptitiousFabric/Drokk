@@ -1,0 +1,6 @@
+# Preserve generated design history locally; promote curated sources in Phase 01.
+/output/
+/dist/
+/.cache/
+/.venv/
+/harness/evidence/

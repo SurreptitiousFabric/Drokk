@@ -1,0 +1,14 @@
+{
+  "original": "lock-reference.png",
+  "originalSha256": "8b8edaeaa2f8964b1701b140966a5336fc840b3abe3e9c712fba5fb8dfb107c1",
+  "crop": {
+    "x": 758,
+    "y": 370,
+    "width": 156,
+    "height": 110
+  },
+  "operation": "User-approved alpha-only background removal. Original RGB values unchanged for every pixel; no redraw, tracing, recolouring or RGB filtering.",
+  "alpha": "r > b*1.15 && r > g*1.05 && r > 0.17 ? 1 : 0",
+  "script": "scripts/extract-lock-emblem.mjs",
+  "sha256": "3a94529c2f3834550738ba2dafefa3a9c8c36bfe1b0ce8c880d8aaa410658f83"
+}

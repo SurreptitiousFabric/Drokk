@@ -1,0 +1,17 @@
+{
+  "package": "omarchy-dev 4.0.0.r6589.gdec29fa-1",
+  "files": {
+    "audio/Panel.qml": "a2b636a2b430316eed47315f0c18c5e5e860c3e5985e238bceb5a1fc9fd509a9",
+    "audio/Model.js": "9e15d94b2076b039418339ea4e5f4bd305d80d8129a53fd6d3dfb67d1817e4b0",
+    "audio/manifest.json": "8322d00019751f81d80c8748be736b380d8cb375721806aa8987ee5200b6e487",
+    "network/Panel.qml": "0f34423d4879a1ca69dfbfbfb9819916179e651804dfc2b798ea75d633f960ee",
+    "network/Model.js": "864f658384438e319d6051bf95a18384fee1c6512686dc8cb9df18888c1760a1",
+    "network/manifest.json": "cd18affe2e42fb65bf5fe624d78d843876d5bdb3e097ce954ee92dd327fe5419",
+    "bluetooth/Panel.qml": "fbec0abcd991d3210cd3a9b0ab8c5d554e508e95d7537d9e52dd702005053a69",
+    "bluetooth/Model.js": "b34f3259c6553f20ce37619d2f390cd3293303266f89f2a6df0b6810da384417",
+    "bluetooth/manifest.json": "c15c51ab8a6cb82df8ebe3a5195b8d69c69d2ff9bbd00d748204d81a3ddc1d8a",
+    "power/Panel.qml": "bbd4da9ef5cf07bb8023806c56ed2f51c64d881319c31117c176e9f9bbc3fa5f",
+    "power/Model.js": "5ed21781bcd315742b8eda1aa72f415f72217a38e03c659fe40095ed939f7ed2",
+    "power/manifest.json": "7e1a3d83a1ffd85f4a9ee2df9ccfd2cb63de794f100c5e2ec11156be7df83bb5"
+  }
+}

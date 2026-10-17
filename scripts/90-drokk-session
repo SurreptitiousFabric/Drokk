@@ -1,0 +1,7 @@
+#!/bin/bash
+set -euo pipefail
+# Native theme-set calls can overlap after Omarchy releases its theme lock.
+mkdir -p "$HOME/.local/state/drokk"
+exec 8>>"$HOME/.local/state/drokk/session.lock"
+flock -w 15 8
+exec mise exec node@26.7.0 -- node "$HOME/.local/share/drokk/theme-session.mjs" apply "${1:?Expected theme slug}"

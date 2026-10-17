@@ -1,0 +1,31 @@
+{
+  "bar": {
+    "size-horizontal": 28,
+    "size-vertical": 30,
+    "scale-with-font": false
+  },
+  "font": {
+    "base-size": "$size.barPx",
+    "body": "$size.barPx",
+    "subtitle": "$size.interfacePx",
+    "title": "$size.interfacePx",
+    "heading": "$size.interfacePx",
+    "caption": "$size.barPx",
+    "icon": "$size.barPx"
+  },
+  "spacing": {
+    "scale": 1,
+    "scale-with-font": false
+  },
+  "menu": {
+    "border-width": 1,
+    "selected-border-width": "0 0 0 3"
+  },
+  "launcher": {
+    "border-width": 1,
+    "selected-border-width": "0 0 0 3"
+  },
+  "notifications": {
+    "border-width": 1
+  }
+}

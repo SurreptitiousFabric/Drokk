@@ -1,0 +1,18 @@
+{
+  "schemaVersion": 1,
+  "id": "megacity.notifications",
+  "name": "Mega-City One notification cards",
+  "version": "0.1.0",
+  "author": "Mega-City One theme project",
+  "description": "Semantic card presentation over the pinned stock Omarchy notification service.",
+  "kinds": [
+    "service"
+  ],
+  "keepLoaded": true,
+  "entryPoints": {
+    "service": "Service.qml"
+  },
+  "omarchy": {
+    "clonedFrom": "omarchy.notifications"
+  }
+}

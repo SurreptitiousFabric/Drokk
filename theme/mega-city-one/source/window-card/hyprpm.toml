@@ -1,0 +1,13 @@
+[repository]
+name = "drokk-window-card"
+authors = ["Drokk contributors"]
+# Initial single supported release is enforced by Compatibility.hpp.
+# Add Hyprland-commit / published-plugin-commit pairs as release history grows.
+commit_pins = []
+
+[drokk-window-card]
+description = "Window-attached information cards for the Drokk theme"
+authors = ["Drokk contributors"]
+output = "drokk-window-card.so"
+build = ["bash build.sh"]
+since_hyprland = 7643

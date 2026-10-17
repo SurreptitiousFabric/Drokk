@@ -1,0 +1,80 @@
+[tools]
+node = "26.7.0"
+python = "3.13.15"
+
+[tasks."theme:build"]
+description = "Build Mega-City One from canonical tracked sources"
+run = "node scripts/theme.mjs build"
+
+[tasks."theme:check"]
+description = "Check the complete generated package against its manifest"
+run = "node scripts/theme.mjs check"
+
+[tasks."theme:test"]
+description = "Run package and lifecycle fixture tests serially"
+run = "node --test --test-concurrency=1 tests/*.test.mjs"
+
+[tasks."theme:install"]
+description = "Stage into an explicit fixture HOME; does not activate a theme"
+run = "node scripts/theme.mjs install"
+
+[tasks."theme:remove"]
+description = "Restore an explicit fixture HOME from the owned installation receipt"
+run = "node scripts/theme.mjs remove"
+
+[tasks."theme:check-native"]
+description = "Validate generated files with installed native parsers and scoped font/editor lookup"
+run = "node scripts/check-native.mjs"
+
+[tasks."theme:configure"]
+description = "Configure Foot and font discovery in an explicit fixture HOME only"
+run = "node scripts/theme.mjs configure"
+
+[tasks."theme:unconfigure"]
+description = "Restore original fixture font settings before package removal"
+run = "node scripts/theme.mjs unconfigure"
+
+[tasks."theme:check-notification"]
+description = "Check companion launcher and notification controls in native Qt"
+run = "node scripts/check-notification.mjs"
+
+[tasks."theme:check-shell"]
+description = "Check companion launcher and notification controls in native Qt"
+run = "node scripts/check-notification.mjs"
+
+
+[tasks."theme:check-login"]
+description = "Check native login submission, password clearing and failure recovery without authentication"
+run = "node scripts/check-login.mjs"
+
+[tasks."theme:check-lock"]
+description = "Preview lock view and check its input signals without loading authentication"
+run = "node scripts/check-lock.mjs"
+
+[tasks."theme:check-notification-service"]
+description = "Finite notification action, dismissal, DND, history and expiry check on a private bus"
+run = "dbus-run-session -- env MEGACITY_PRIVATE_NOTIFICATION_TEST=1 mise exec python@3.14.7 -- python scripts/check-notification-service.py"
+
+[tasks."theme:check-cursor"]
+description = "Validate generated cursor states with the native Xcursor loader"
+run = "python scripts/check-cursor.py"
+
+[tasks."theme:build-card"]
+description = "Build the optional native window card against the installed Hyprland headers"
+run = "node scripts/build-window-card.mjs"
+
+[tasks."theme:check-card"]
+description = "Run the explicitly authorised finite isolated compositor card check"
+run = "node scripts/check-window-card.mjs --isolated"
+
+[tasks."theme:package-card"]
+description = "Prepare the standalone card source package for hyprpm"
+run = "node scripts/build-window-card.mjs --package"
+
+[tasks."theme:check-card-hyprpm"]
+description = "Run the authorised isolated card and real hyprpm package lifecycle checks"
+run = "node scripts/check-window-card.mjs --isolated --hyprpm"
+
+[tasks."theme:check-safety"]
+description = "Check bar patch safety and native service compatibility fallback in fixtures"
+run = "node --test --test-concurrency=1 tests/bar-colours.test.mjs tests/compatibility.test.mjs"

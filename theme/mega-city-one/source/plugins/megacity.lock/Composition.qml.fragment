@@ -1,0 +1,58 @@
+    Item {
+      id: composition
+      width: parent.width
+      height: 480
+      anchors.centerIn: parent
+      scale: Math.min(1, root.height / 620)
+      transformOrigin: Item.Center
+      property date now: new Date()
+      Timer { interval: 1000; running: root.visible; repeat: true; onTriggered: composition.now = new Date() }
+
+      Text {
+        width: parent.width; y: 0; height: 100
+        text: Qt.formatTime(composition.now, "HH:mm")
+        color: Color.accent; font.family: Style.font.family; font.pixelSize: 92
+        horizontalAlignment: Text.AlignHCenter; verticalAlignment: Text.AlignVCenter
+      }
+      Text {
+        width: parent.width; y: 105
+        text: Qt.formatDate(composition.now, "ddd d MMM")
+        color: Color.accent; font.family: Style.font.family; font.pixelSize: 26
+        horizontalAlignment: Text.AlignHCenter
+      }
+      Image {
+        anchors.horizontalCenter: parent.horizontalCenter; y: 165
+        width: 156; height: 110; source: "lock-emblem.png"; smooth: false; fillMode: Image.PreserveAspectFit
+      }
+      Text {
+        width: parent.width; y: 292
+        text: Quickshell.env("USER") || Quickshell.env("LOGNAME")
+        color: Color.lock.text; font.family: Style.font.family; font.pixelSize: 24
+        horizontalAlignment: Text.AlignHCenter
+      }
+      Rectangle {
+        id: unlockButton
+        objectName: "unlockButton"
+        anchors.horizontalCenter: parent.horizontalCenter; y: 415
+        width: 194; height: 50; radius: 6
+        color: buttonMouse.containsMouse ? Qt.lighter(Color.accent, 1.12) : Color.accent
+        opacity: root.inputEnabled && !root.authenticatingPassword ? 1 : 0.65
+        activeFocusOnTab: true
+        Accessible.role: Accessible.Button
+        Accessible.name: "Unlock"
+        function submit() {
+          if (!root.inputEnabled || root.authenticatingPassword) return
+          var submitted = root.passwordText
+          root.passwordTextEdited("")
+          if (submitted.length > 0) root.submitPassword(submitted)
+        }
+        Keys.onReturnPressed: submit()
+        Keys.onSpacePressed: submit()
+        border.width: activeFocus ? 2 : 0; border.color: Color.lock.text
+        Text {
+          anchors.centerIn: parent; text: root.authenticatingPassword ? "Checking…" : "Unlock   →"
+          color: Color.background; font.family: Style.font.family; font.pixelSize: 20
+        }
+        MouseArea { id: buttonMouse; anchors.fill: parent; hoverEnabled: true; onClicked: unlockButton.submit() }
+      }
+    }

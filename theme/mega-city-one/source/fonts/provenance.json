@@ -1,0 +1,48 @@
+[
+  {
+    "file": "ShureTechMonoNerdFontMono-Regular.ttf",
+    "url": "https://raw.githubusercontent.com/ryanoasis/nerd-fonts/master/patched-fonts/ShareTechMono/ShureTechMonoNerdFontMono-Regular.ttf",
+    "gitBlobSha": "284c33bbcf1d1474a4b4a2dd65ef7ee15de5ab66",
+    "bytes": 2336172,
+    "sha256": "9a821c1499aeab3c7cb03ab606678ffaca681497d5e0f0aa96a610ba9ff92a01",
+    "verifiedGitBlob": true
+  },
+  {
+    "file": "ShureTechMono-OFL.txt",
+    "url": "https://raw.githubusercontent.com/ryanoasis/nerd-fonts/master/patched-fonts/ShareTechMono/OFL.txt",
+    "gitBlobSha": "02c8c8ee82de3f9b9c7485d3055f4a9d8232270f",
+    "bytes": 4520,
+    "sha256": "a2ddb2e4b4fd2b9ada3f53461bf33d9e20f54f84d7880a581f90cb825db6c5f6",
+    "verifiedGitBlob": true
+  },
+  {
+    "file": "PlexSans-Variable.ttf",
+    "url": "https://raw.githubusercontent.com/google/fonts/main/ofl/ibmplexsans/IBMPlexSans%5Bwdth%2Cwght%5D.ttf",
+    "gitBlobSha": "30f837e8b02e8ecddce6cbebc425b1f422392515",
+    "bytes": 537244,
+    "sha256": "3b031aa4216174205bd8471f88a49b91f093169e9e87bd5262242bc5967fe2e3",
+    "verifiedGitBlob": true
+  },
+  {
+    "file": "PlexSans-OFL.txt",
+    "url": "https://raw.githubusercontent.com/google/fonts/main/ofl/ibmplexsans/OFL.txt",
+    "gitBlobSha": "c35c4c618fab33da8695177b3a6cefe0810b7b28",
+    "bytes": 4456,
+    "sha256": "7e6b2818edbd8f6a01ae80641cc8f16a51080d08fb4e532be3a0b6f74adb07da",
+    "verifiedGitBlob": true
+  },
+  {
+    "file": "ShareTechMono-Regular.ttf",
+    "url": "https://raw.githubusercontent.com/google/fonts/main/ofl/sharetechmono/ShareTechMono-Regular.ttf",
+    "bytes": 43272,
+    "sha256": "9ceab1f87414829af259c0f537573ae03ef7dd3147c0b27a36a1a0beb6732677",
+    "verifiedGitBlob": false
+  },
+  {
+    "file": "ShareTechMono-OFL.txt",
+    "url": "https://raw.githubusercontent.com/google/fonts/main/ofl/sharetechmono/OFL.txt",
+    "bytes": 4429,
+    "sha256": "9d96f445b6e9c701428811d0177f894874f8d6f07ecc30d568c506542368f3ff",
+    "verifiedGitBlob": false
+  }
+]

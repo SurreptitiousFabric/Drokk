@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 1,
+  "id": "megacity.lock",
+  "name": "Mega-City One lock presentation",
+  "version": "0.1.0",
+  "author": "Mega-City One theme project",
+  "description": "Clock, flat eagle and centred controls; pinned native authentication service unchanged.",
+  "kinds": ["service"],
+  "keepLoaded": true,
+  "entryPoints": {"service": "Service.qml"},
+  "omarchy": {"clonedFrom": "omarchy.lock"}
+}

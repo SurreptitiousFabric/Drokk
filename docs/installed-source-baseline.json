@@ -1,0 +1,60 @@
+{
+  "observed": "2026-10-17",
+  "architecture": "aarch64",
+  "omarchy": "4.0.0.r6589.gdec29fa-1",
+  "sources": [
+    {
+      "path": "/usr/share/omarchy/default/themed/shell.toml.tpl",
+      "sha256": "bdc8e76a5a9a700adaca0d2fa44a2a340584892fd507e3fcbd4f9a4843765242"
+    },
+    {
+      "path": "/usr/share/omarchy/default/themed/ghostty.conf.tpl",
+      "sha256": "8f56c275227a6075f65dafc3040d2f2829b8fb413451c709a9f29f32a795e1b0"
+    },
+    {
+      "path": "/usr/share/omarchy/default/themed/foot.ini.tpl",
+      "sha256": "0c719c4efc4e640bc4cb776fc704510f2c0087b45becba083b8eac5b8a43de74"
+    },
+    {
+      "path": "/usr/share/omarchy/default/themed/hyprland.lua.tpl",
+      "sha256": "dbe746fa74cfdc9a136806852fcb0bb66189426f8f5400b7e8324fbef3887deb"
+    },
+    {
+      "path": "/usr/share/omarchy/default/themed/neovim.lua.tpl",
+      "sha256": "5391f827d5acd079658a19e2225d8c2a8509bc487cbdaec8b18cd0c5547bfe70"
+    },
+    {
+      "path": "/usr/share/omarchy/bin/omarchy-theme-set",
+      "sha256": "9dd2872607a7dc057a2b492c9b3ce62c9fcac002a487e3109b0353b4973204fc"
+    },
+    {
+      "path": "/usr/share/omarchy/bin/omarchy-theme-set-gnome",
+      "sha256": "942bb8fd260387a39ef664c3b172d1fe1baff265a2592a26d8efe118f35a19aa"
+    },
+    {
+      "path": "/usr/share/omarchy/bin/omarchy-theme-set-browser",
+      "sha256": "62bb7cd1d4e7e540b35769dd50163f0bf05c3711ce9d5acc83e80167b76f4beb"
+    },
+    {
+      "path": "/usr/share/omarchy/shell/plugins/menu/Menu.qml",
+      "sha256": "7fef6394cce563f188324386738a55e3bde36187ba6d1341ac2d4d46e1879df9"
+    },
+    {
+      "path": "/usr/share/omarchy/shell/plugins/notifications/components/NotificationCard.qml",
+      "sha256": "3ffb66ebc065886fc05b6215bd6fff9cd9e5769fac15f807748d550c91efc2f4"
+    },
+    {
+      "path": "/usr/share/omarchy/shell/plugins/lock/Service.qml",
+      "sha256": "3f0a265a09f7957e8f5d74666595d3136ec64899c414426190460f9e2098e701"
+    },
+    {
+      "path": "/usr/share/omarchy/shell/plugins/lock/LockView.qml",
+      "sha256": "ddc05881b571c1ffc526d751a83002649d873969a2fd66297b347c152ac6111b"
+    },
+    {
+      "path": "/usr/share/sddm/themes/omarchy/Main.qml",
+      "sha256": "aa578ec8a6269079e2141842073821fa24940fa4495a13815fa0754652e6027f"
+    }
+  ],
+  "scope": "Read-only source premises, not runtime acceptance"
+}

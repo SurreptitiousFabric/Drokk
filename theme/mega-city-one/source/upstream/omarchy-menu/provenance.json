@@ -1,0 +1,8 @@
+{
+  "package": "omarchy-dev 4.0.0.r6589.gdec29fa-1",
+  "origin": "/usr/share/omarchy/shell/plugins/menu",
+  "files": {
+    "Menu.qml": "7fef6394cce563f188324386738a55e3bde36187ba6d1341ac2d4d46e1879df9",
+    "MenuModel.js": "ff6b265ca477d0d04297b0d9a5d9715960069db6da44603160d329e087e55fd8"
+  }
+}

@@ -1,0 +1,56 @@
+{
+  "selectedPairing": "Share Tech",
+  "roles": {
+    "mono": {
+      "family": "ShureTechMono Nerd Font Mono",
+      "file": "ShureTechMonoNerdFontMono-Regular.ttf",
+      "weight": 400,
+      "style": "normal"
+    },
+    "display": {
+      "family": "ShureTechMono Nerd Font Mono",
+      "file": "ShureTechMonoNerdFontMono-Regular.ttf",
+      "weight": 400,
+      "style": "normal"
+    },
+    "interface": {
+      "family": "IBM Plex Sans",
+      "file": "PlexSans-Variable.ttf",
+      "weight": "100 900",
+      "style": "normal"
+    },
+    "icons": {
+      "family": "JetBrainsMono Nerd Font",
+      "file": "JetBrains-Regular.ttf",
+      "weight": 400,
+      "style": "normal"
+    },
+    "panel": {
+      "family": "Nimbus Sans Narrow",
+      "file": "NimbusSansNarrow-Regular.otf",
+      "weight": 400,
+      "style": "normal"
+    },
+    "panelHeading": {
+      "family": "Nimbus Sans Narrow",
+      "file": "NimbusSansNarrow-BoldOblique.otf",
+      "weight": 700,
+      "style": "oblique"
+    },
+    "shell": {
+      "family": "Share Tech Mono",
+      "file": "ShareTechMono-Regular.ttf",
+      "weight": 400,
+      "style": "normal"
+    }
+  },
+  "sizes": {
+    "terminalPx": 16,
+    "interfacePx": 16,
+    "barPx": 14,
+    "panelHeadingPx": 23
+  },
+  "ligatures": false,
+  "syntheticWeights": false,
+  "scope": "Theme source and rendered previews. System font installation and desktop configuration are separate. Preferred lock/login raster artwork has baked-in typography."
+}

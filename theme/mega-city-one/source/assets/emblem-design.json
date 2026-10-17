@@ -1,0 +1,21 @@
+{
+  "name": "Classic",
+  "selectedDirection": "A — Classic",
+  "reference": "../eagle-exploration/three-directions.png",
+  "master": "emblem.source.svg",
+  "viewBox": [
+    0,
+    0,
+    100,
+    100
+  ],
+  "paint": "art.eagle",
+  "method": "Editable vector reconstruction of the selected Classic direction; single shared source for all vector consumers.",
+  "negativeSpace": "Transparent even-odd cutouts; no baked-in background colour.",
+  "renderChecks": [
+    26,
+    100,
+    500
+  ],
+  "exceptions": "Preferred lock/login raster references and eagles within photographic artwork are separate artwork layers."
+}

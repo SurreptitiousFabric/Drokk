@@ -1,0 +1,5 @@
+{
+  "scope": "Illustrative preview states, not live device readings",
+  "roles": {"enabled":"accent","idle":"shell.bar.text","unavailable":"muted","attention":"red"},
+  "modules": {"bars":"enabled","cloud":"enabled","tray":"idle","music":"idle","headphones":"unavailable","shield":"enabled","frame":"idle","agents":"idle","bluetooth":"enabled","network":"enabled","audio":"enabled","monitor":"idle","power":"idle"}
+}

@@ -1,0 +1,8 @@
+{
+  "package": "omarchy-dev 4.0.0.r6589.gdec29fa-1",
+  "origin": "/usr/share/omarchy/shell/plugins/notifications",
+  "files": {
+    "Service.qml": "f806759a6ccb27a19d39ab9884d438b69af392256cae7b760d944619738f2726",
+    "NotificationLogic.js": "d45dc8debd8946a48a909a126dd755ba9f95846382a85afdd6fd1e8921f5d131"
+  }
+}

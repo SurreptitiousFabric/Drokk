@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "id": "megacity.menu",
+  "name": "Mega-City One menu",
+  "version": "0.1.0",
+  "author": "Mega-City One theme project",
+  "description": "Compact presentation of the pinned native Omarchy menu, preserving all routes and actions.",
+  "kinds": [
+    "menu",
+    "bar-widget"
+  ],
+  "entryPoints": {
+    "barWidget": "BarWidget.qml",
+    "menu": "Menu.qml"
+  },
+  "barWidget": {
+    "displayName": "Mega-City One menu",
+    "description": "Eagle menu button; right-click opens the default terminal",
+    "category": "Compositor",
+    "defaultSection": "left",
+    "allowMultiple": false
+  },
+  "keepLoaded": true,
+  "omarchy": {
+    "clonedFrom": "omarchy.menu"
+  }
+}

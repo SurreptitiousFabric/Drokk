@@ -1,0 +1,14 @@
+{
+  "schemaVersion": 1,
+  "id": "megacity.launcher",
+  "name": "Mega-City One compact launcher",
+  "version": "0.1.0",
+  "author": "Mega-City One theme project",
+  "description": "Compact application view using the shell shared AppLibrary; no replacement search or launching service.",
+  "kinds": [
+    "overlay"
+  ],
+  "entryPoints": {
+    "overlay": "Launcher.qml"
+  }
+}

@@ -1,0 +1,62 @@
+[
+  {
+    "id": "io.github.surreptitiousfabric.two-bar",
+    "file": "BarWidget.qml",
+    "changes": [
+      [
+        "    active: root.opened",
+        "    activeColor: Color.accent\n    active: root.opened"
+      ]
+    ]
+  },
+  {
+    "id": "local.icloud-monitor",
+    "file": "BarWidget.qml",
+    "changes": [
+      [
+        "    dimmed: !root.statusHealthy || root.unreadCount === 0",
+        "    foreground: root.statusHealthy ? Color.accent : Color.muted\n    activeColor: Color.accent\n    dimmed: false"
+      ]
+    ]
+  },
+  {
+    "id": "io.github.thisisgm.omapods",
+    "file": "Panel.qml",
+    "changes": [
+      [
+        "readonly property color barIconColor: pods.hasAirPods ? barForeground : Qt.darker(barForeground, 1.55)",
+        "readonly property color barIconColor: pods.schemaUnsupported ? Color.urgent : pods.hasAirPods ? Color.accent : Color.muted"
+      ]
+    ]
+  },
+  {
+    "id": "io.github.grichard99.omaproton-vpn",
+    "file": "Panel.qml",
+    "changes": [
+      [
+        "readonly property color barIconColor: vpn.connected ? barForeground : Qt.darker(barForeground, 1.55)",
+        "readonly property color barIconColor: vpn.connected ? Color.accent : vpn.lastError ? Color.urgent : Color.muted"
+      ]
+    ]
+  },
+  {
+    "id": "io.github.surreptitiousfabric.sonarchy",
+    "file": "BarWidget.qml",
+    "changes": [
+      [
+        "      // Always use the bar's theme foreground, exactly like system icons.\n      color: root.bar ? root.bar.barForeground : Color.foreground",
+        "      color: !root.service || !root.service.hasDevices ? Color.muted : root.playbackLabel === \"Playing\" ? Color.accent : Color.foreground"
+      ]
+    ]
+  },
+  {
+    "id": "io.github.surreptitiousfabric.omarchy-frame",
+    "file": "BarWidget.qml",
+    "changes": [
+      [
+        "        stroke: root.bar ? root.bar.barForeground : Color.foreground",
+        "        stroke: root.service && root.service.snapshot.online ? Color.accent : Color.muted"
+      ]
+    ]
+  }
+]

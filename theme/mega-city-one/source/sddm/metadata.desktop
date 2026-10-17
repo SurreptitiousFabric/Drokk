@@ -1,0 +1,10 @@
+[SddmGreeterTheme]
+Name=Mega-City One
+Description=Original approved eagle artwork with live SDDM controls
+Author=Mega-City One theme project
+Type=sddm-theme
+Version=0.1.0
+QtVersion=6
+MainScript=Main.qml
+Theme-Id=mega-city-one
+Theme-API=2.0

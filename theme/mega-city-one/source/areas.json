@@ -1,0 +1,632 @@
+[
+  {
+    "number": 1,
+    "name": "Wallpaper",
+    "tokens": [
+      "asset:wallpaper",
+      "effects.scrim"
+    ],
+    "requirements": [
+      "Image file, crop anchor centre, aspect fill at 1920×1080. Photorealistic artwork.",
+      "Artwork pixels are not palette colours; replacing the asset updates desktop backgrounds."
+    ],
+    "acceptance": [
+      "No UI embedded in the wallpaper; same crop in every desktop preview."
+    ],
+    "status": "specified-design; application integration unverified"
+  },
+  {
+    "number": 2,
+    "name": "Colour palette",
+    "tokens": [
+      "background",
+      "dark_background",
+      "darker_background",
+      "lighter_background",
+      "foreground",
+      "dark_foreground",
+      "light_foreground",
+      "bright_foreground",
+      "muted",
+      "accent",
+      "selection",
+      "selection_background",
+      "selection_foreground",
+      "red",
+      "yellow",
+      "orange",
+      "green",
+      "cyan",
+      "blue",
+      "magenta",
+      "brown",
+      "bright_red",
+      "bright_yellow",
+      "bright_green",
+      "bright_cyan",
+      "bright_blue",
+      "bright_magenta",
+      "hyprland_active_border",
+      "hyprland_inactive_border",
+      "art.folder",
+      "art.eagle",
+      "art.cursor",
+      "art.cursorOutline",
+      "panel.background",
+      "panel.outline",
+      "panel.heading",
+      "panel.text",
+      "panel.tab",
+      "ui.hover",
+      "ui.pressed",
+      "ui.disabled",
+      "ui.link",
+      "status.warning",
+      "status.info",
+      "status.success",
+      "status.error",
+      "terminal.cursor",
+      "editor.keyword",
+      "editor.string",
+      "editor.comment",
+      "editor.number",
+      "browser.toolbar",
+      "browser.tabActive",
+      "browser.address",
+      "gtk.background",
+      "gtk.text",
+      "gtk.selection",
+      "gtk.selectionText",
+      "qt.background",
+      "qt.text",
+      "qt.selection",
+      "qt.selectionText",
+      "workspace.active",
+      "workspace.activeText",
+      "workspace.idle",
+      "workspace.urgent",
+      "monitor.graph",
+      "monitor.current",
+      "monitor.threshold",
+      "shell.bar.background",
+      "shell.bar.text",
+      "shell.bar.active",
+      "shell.hyprland.active-border",
+      "shell.hyprland.active-border-foreground",
+      "shell.controls.normal-color",
+      "shell.controls.normal-border",
+      "shell.controls.hover-cursor-color",
+      "shell.controls.hover-cursor-border",
+      "shell.controls.focus-color",
+      "shell.controls.focus-border",
+      "shell.controls.selected-color",
+      "shell.controls.selected-border",
+      "shell.popups.background",
+      "shell.popups.text",
+      "shell.popups.border",
+      "shell.tooltip.background",
+      "shell.tooltip.text",
+      "shell.tooltip.border",
+      "shell.notifications.background",
+      "shell.notifications.text",
+      "shell.notifications.border",
+      "shell.notifications.countdown",
+      "shell.launcher.background",
+      "shell.launcher.text",
+      "shell.launcher.border",
+      "shell.launcher.scrim",
+      "shell.launcher.selected-background",
+      "shell.launcher.selected-text",
+      "shell.launcher.selected-border",
+      "shell.menu.background",
+      "shell.menu.text",
+      "shell.menu.border",
+      "shell.menu.scrim",
+      "shell.menu.selected-background",
+      "shell.menu.selected-text",
+      "shell.menu.selected-border",
+      "shell.polkit.background",
+      "shell.polkit.text",
+      "shell.polkit.text-error",
+      "shell.polkit.border",
+      "shell.polkit.border-error",
+      "shell.polkit.scrim",
+      "shell.polkit.accent",
+      "shell.lock.background",
+      "shell.lock.text",
+      "shell.lock.placeholder",
+      "shell.lock.text-error",
+      "shell.lock.border",
+      "shell.lock.border-active",
+      "shell.lock.border-error",
+      "shell.lock.selection",
+      "shell.image-picker.scrim",
+      "shell.image-picker.text",
+      "shell.image-picker.selected-border",
+      "shell.image-picker.unselected-border"
+    ],
+    "requirements": [
+      "Every named colour listed with exact value and inheritance; every alpha from 0 to 1.",
+      "Palette board includes state specimens, all normal/bright terminal colours and calculated contrast."
+    ],
+    "acceptance": [
+      "No literal paint colours outside palette.json in generated vector UI.",
+      "Changing an inherited colour updates all dependent vector previews and exports."
+    ],
+    "status": "specified-design; application integration unverified"
+  },
+  {
+    "number": 3,
+    "name": "Window borders",
+    "tokens": [
+      "hyprland_active_border",
+      "hyprland_inactive_border"
+    ],
+    "requirements": [
+      "2 px rectangular border; active gold and inactive blue-grey. No gradient by default.",
+      "Same frame primitive in all examples."
+    ],
+    "acceptance": [
+      "Active/inactive states side by side; changing a border token preserves geometry."
+    ],
+    "status": "specified-design; application integration unverified"
+  },
+  {
+    "number": 4,
+    "name": "Window appearance",
+    "tokens": [
+      "dark_background",
+      "background",
+      "foreground",
+      "panel.background",
+      "panel.outline",
+      "panel.heading",
+      "panel.text",
+      "panel.tab"
+    ],
+    "requirements": [
+      "Rectangular frame, 38 px title region, right-side minus/close controls.",
+      "Comic card 204×120 px; red body inside owner, right inset 3 px; gold tab protrudes 12 px.",
+      "No credits in per-window cards."
+    ],
+    "acceptance": [
+      "Active/inactive frame and card open/tucked states use identical shared geometry."
+    ],
+    "status": "specified-design; application integration unverified"
+  },
+  {
+    "number": 5,
+    "name": "Terminal",
+    "tokens": [
+      "background",
+      "foreground",
+      "selection_background",
+      "selection_foreground",
+      "terminal.cursor",
+      "red",
+      "green",
+      "yellow",
+      "blue",
+      "magenta",
+      "cyan",
+      "muted",
+      "bright_foreground"
+    ],
+    "requirements": [
+      "ShureTechMono Nerd Font Mono. 16 px in illustration; installed font size remains separate.",
+      "ANSI 0–15 mapped to named normal and bright colours; selection is an explicit pair."
+    ],
+    "acceptance": [
+      "Show ordinary output, prompt, selection, cursor, error and success."
+    ],
+    "status": "specified-design; application integration unverified"
+  },
+  {
+    "number": 6,
+    "name": "Terminal font",
+    "tokens": [
+      "foreground",
+      "dark_foreground",
+      "terminal.cursor"
+    ],
+    "requirements": [
+      "ShureTechMono Nerd Font Mono Regular, selected from the Share Tech comparison. No synthesized bold or italic.",
+      "16 px terminal specimen. Show alphabet, digits, punctuation and ambiguous glyphs using the actual bundled font.",
+      "Typeface reads from typography.json; icon glyphs retain JetBrainsMono Nerd Font separately."
+    ],
+    "acceptance": [
+      "Render actual installed font; do not use invented font identities."
+    ],
+    "status": "specified-design; application integration unverified"
+  },
+  {
+    "number": 7,
+    "name": "Application launcher",
+    "tokens": [
+      "shell.menu.background",
+      "shell.menu.text",
+      "shell.menu.border",
+      "shell.menu.scrim",
+      "shell.menu.selected-background",
+      "shell.menu.selected-text",
+      "shell.menu.selected-border"
+    ],
+    "requirements": [
+      "Compact 360×344 px card centred at (960,540) on 1920×1080 canvas. Radius 10 px, muted blue-grey outline 1 px.",
+      "No title bar, window buttons or boxed search input. Magnifying glass and caret form the integrated search header.",
+      "Five rows on a 51 px step; selected row 340×44 px, radius 5 px, 3 px red left border; gold fill with dark selected text.",
+      "Distinct terminal, folder, globe, editor and gear icons on the canonical 24-unit grid. Idle icons cream; terminal glyph gold on a dark tile.",
+      "Actual installed app entry point is omarchy-menu toggle apps, using [menu] colours. Theme supports colours, alpha, side-specific selected borders and shared font/spacing.",
+      "Corner radius follows Hyprland rounding globally. Exact header glyph/caret, different card/row radii and launcher-only geometry require a user-owned QML customization.",
+      "Background gradient in illustration is subtle. Exact shaded background requires custom QML; stock theme surface colour is flat."
+    ],
+    "acceptance": [
+      "Verify installed Menu.qml, Border.qml and Style.qml premises; do not claim a live themed launcher from a mockup.",
+      "Use identical shared assets and resolved palette values; selecting gold accent updates the selected row.",
+      "Full preview shows launcher over the fixed wallpaper and bar, without unrelated windows obscuring the composition.",
+      "Remaining acceptance: keyboard search, navigation, empty results and actual running UI after implementation."
+    ],
+    "status": "source-verified feasibility; mockup corrected; live theme not installed"
+  },
+  {
+    "number": 8,
+    "name": "Omarchy Shell bar",
+    "tokens": [
+      "shell.bar.background",
+      "shell.bar.text",
+      "shell.bar.active",
+      "art.eagle",
+      "workspace.active",
+      "workspace.activeText",
+      "workspace.idle",
+      "workspace.urgent"
+    ],
+    "requirements": [
+      "26 px design baseline; four visible workspaces; active workspace 2.",
+      "Left menu/workspaces; centre indicators/clock/keyboard/weather/update; right modules follow shell.json.",
+      "Height and visible workspaces are design assumptions, not live measurements.",
+      "Enabled/on modules use accent; idle/action controls use shell.bar.text; unavailable modules use muted; attention uses red. Shared sample states live in assets/bar-states.json. Power is an idle action, not an enabled-state indicator.",
+      "Native plugin identities in assets/bar-icons.json: Two Bar, iCloud, Sonarchy, Omapods AirPods Pro variant, Proton VPN, Frame TV, Agents glyph. No generic music-note/headphones/shield/brackets replacements for those plugins.",
+      "Master menu emblem uses the selected Classic source with broad three-feather wings, clear profile head and central shield; no independent redraws."
+    ],
+    "acceptance": [
+      "Same emblem, icon paths, order and bar dimensions in all desktop views."
+    ],
+    "status": "specified-design; application integration unverified"
+  },
+  {
+    "number": 9,
+    "name": "Notifications",
+    "tokens": [
+      "shell.notifications.background",
+      "shell.notifications.text",
+      "shell.notifications.border",
+      "shell.notifications.countdown",
+      "status.info",
+      "status.success",
+      "status.warning",
+      "status.error"
+    ],
+    "requirements": [
+      "Right-aligned stack, 42 px right inset and 38 px below the 26 px bar, 380 px card width, 10 px corner radius, 12 px vertical gaps.",
+      "Download gold tile, connected green tile, low battery red tile, information cyan tile; 46×46 px tile with dark 27 px glyph.",
+      "Bold 16 px titles, cream 15 px body, gold dismiss X, underlined 14 px Open folder action on download. Small error title uses the contrast-corrected status.error.",
+      "Card heights 96 or 116 px according to content. Body, tile and text positions share one notificationCard component with compact palette samples.",
+      "Theme slots control background, text, border and alpha; semantic roles control the tile fills and error heading.",
+      "Installed NotificationCard.qml supports app/image/glyph icon, bold summary, body text, rounding and card-click/right-click dismiss. Permanent X, independent action links and status-specific tiles/heading treatment require supplied icon artwork and/or a user-owned QML customization."
+    ],
+    "acceptance": [
+      "Preserve the original visual hierarchy without comic wallpaper or unrelated frame changes.",
+      "All text remains readable; error title uses status.error, not decorative red.",
+      "Colours and shared notification geometry update the screenshot and palette specimens together.",
+      "Remaining live acceptance: action invocation, dismissal, timeout/hover behaviour, long text wrapping and critical urgency."
+    ],
+    "status": "mockup corrected; installed component inspected; custom chrome not installed"
+  },
+  {
+    "number": 10,
+    "name": "Lock screen",
+    "tokens": [
+      "shell.lock.background",
+      "shell.lock.text",
+      "shell.lock.placeholder",
+      "shell.lock.text-error",
+      "shell.lock.border",
+      "shell.lock.border-active",
+      "shell.lock.border-error",
+      "shell.lock.selection"
+    ],
+    "requirements": [
+      "Preserve preferred open rainy-city layout: gold 20:47 clock, date, detailed eagle, anElectricMonk.",
+      "Password field below user; light outline and gold underline; gold Unlock button.",
+      "Idle, typing, authentication failure and caps-lock states need layered UI."
+    ],
+    "acceptance": [
+      "Preferred reference is preserved. Independent recolouring is blocked until background, emblem and controls are separated."
+    ],
+    "status": "reference-artwork-needs-layers"
+  },
+  {
+    "number": 11,
+    "name": "GTK applications",
+    "tokens": [
+      "gtk.background",
+      "gtk.text",
+      "gtk.selection",
+      "gtk.selectionText",
+      "ui.hover",
+      "ui.disabled",
+      "hyprland_active_border"
+    ],
+    "requirements": [
+      "Preserve native application layout; show buttons, entry, sidebar, checked/unchecked, hover and disabled.",
+      "Theme coverage depends on GTK version and application styling."
+    ],
+    "acceptance": [
+      "Map and verify actual application support before claiming installation parity."
+    ],
+    "status": "specified-design; application integration unverified"
+  },
+  {
+    "number": 12,
+    "name": "Qt applications",
+    "tokens": [
+      "qt.background",
+      "qt.text",
+      "qt.selection",
+      "qt.selectionText",
+      "ui.hover",
+      "ui.disabled",
+      "hyprland_active_border"
+    ],
+    "requirements": [
+      "Same role hierarchy as GTK, native Qt widget geometry.",
+      "Show entry, selected row, normal/default/disabled buttons and tabs."
+    ],
+    "acceptance": [
+      "Treat Qt palette and app stylesheet integration as separate implementation checks."
+    ],
+    "status": "specified-design; application integration unverified"
+  },
+  {
+    "number": 13,
+    "name": "Icons",
+    "tokens": [
+      "art.folder",
+      "art.eagle",
+      "foreground",
+      "accent",
+      "ui.disabled"
+    ],
+    "requirements": [
+      "Single folder geometry; single symbolic path family, 1.7 unit strokes on 24×24 grid.",
+      "Master eagle is the selected A — Classic direction, rebuilt as a single editable vector. Detailed reference eagles remain distinct raster artwork."
+    ],
+    "acceptance": [
+      "Editing canonical source SVG templates regenerates matching assets and screenshots."
+    ],
+    "status": "specified-design; application integration unverified"
+  },
+  {
+    "number": 14,
+    "name": "Mouse cursor",
+    "tokens": [
+      "art.cursor",
+      "art.cursorOutline",
+      "blue"
+    ],
+    "requirements": [
+      "Pointer, text, busy, link, move, horizontal/vertical/diagonal resize, forbidden and precision states.",
+      "16/24/32/48 px targets with explicit hotspots; current screenshot shows only three states."
+    ],
+    "acceptance": [
+      "Complete asset family and hotspots must exist before calling this an installable cursor theme."
+    ],
+    "status": "specified-design; application integration unverified"
+  },
+  {
+    "number": 15,
+    "name": "Neovim",
+    "tokens": [
+      "background",
+      "foreground",
+      "editor.keyword",
+      "editor.string",
+      "editor.comment",
+      "editor.number",
+      "selection_background",
+      "selection_foreground",
+      "red",
+      "green",
+      "blue"
+    ],
+    "requirements": [
+      "Actual Share Tech Mono; shared syntax roles.",
+      "Show strings, comments, keywords, numbers, search match, selection, diagnostic and diff."
+    ],
+    "acceptance": [
+      "Editor values must display the current palette; no embedded stale hex values."
+    ],
+    "status": "specified-design; application integration unverified"
+  },
+  {
+    "number": 16,
+    "name": "File managers",
+    "tokens": [
+      "art.folder",
+      "gtk.selection",
+      "gtk.selectionText",
+      "foreground",
+      "muted"
+    ],
+    "requirements": [
+      "Graphical Files grid and terminal Yazi list; folders blue-grey, selection gold.",
+      "Eight folder labels fixed across desktop examples; selected Documents state."
+    ],
+    "acceptance": [
+      "Same folder source in every graphical view; Yazi uses terminal palette."
+    ],
+    "status": "specified-design; application integration unverified"
+  },
+  {
+    "number": 17,
+    "name": "System monitor",
+    "tokens": [
+      "monitor.graph",
+      "monitor.current",
+      "monitor.threshold",
+      "foreground",
+      "muted"
+    ],
+    "requirements": [
+      "CPU/memory/network sample data clearly illustrative.",
+      "History blue-grey; current gold; threshold red; same terminal font."
+    ],
+    "acceptance": [
+      "Readable legend and labels; no colour-only threshold indication."
+    ],
+    "status": "specified-design; application integration unverified"
+  },
+  {
+    "number": 18,
+    "name": "Browser",
+    "tokens": [
+      "browser.toolbar",
+      "browser.tabActive",
+      "browser.address",
+      "foreground",
+      "ui.link",
+      "selection_background"
+    ],
+    "requirements": [
+      "Show active/inactive tabs, toolbar, address focus and page boundary.",
+      "Theme affects chrome; arbitrary website content retains its own styling."
+    ],
+    "acceptance": [
+      "No invented dock; distinguish browser chrome from page content."
+    ],
+    "status": "specified-design; application integration unverified"
+  },
+  {
+    "number": 19,
+    "name": "Fonts",
+    "tokens": [
+      "foreground",
+      "light_foreground",
+      "muted",
+      "panel.heading"
+    ],
+    "requirements": [
+      "Selected Share Tech pairing: ShureTechMono Nerd Font Mono for code/terminal and display headings; IBM Plex Sans for interface labels and notifications.",
+      "Nimbus Sans Narrow retains comic-card lettering. JetBrainsMono Nerd Font is reserved for the established icon glyphs.",
+      "Share Tech has only a real regular face in this bundle; never synthesize heavier weights.",
+      "Bundled fonts feed SVG @font-face, the HTML studio, and a build-scoped Fontconfig configuration for PNG rendering."
+    ],
+    "acceptance": [
+      "Show real glyph specimens and normal/secondary/disabled text."
+    ],
+    "status": "specified-design; application integration unverified"
+  },
+  {
+    "number": 20,
+    "name": "Background effects",
+    "tokens": [
+      "effects.scrim",
+      "background",
+      "effects.terminal-background-alpha",
+      "effects.application-background-alpha",
+      "shell.menu.background-alpha",
+      "shell.notifications.background-alpha"
+    ],
+    "requirements": [
+      "Terminal background opacity 0.92; menus and notifications 0.94. Files and other application surfaces stay opaque.",
+      "Wallpaper-only backdrop Gaussian blur 8 px, clipped to each translucent surface; source in effects.json.",
+      "Text, icons, title bars, selection fills and borders remain opaque. No whole-window fading.",
+      "Renderer reconstructs wallpaper backdrop; actual compositor blur and custom shell integration remain to be installed."
+    ],
+    "acceptance": [
+      "Surface alpha edits propagate to dependent vector previews without fading text.",
+      "Shared wallpaper remains sharp outside surfaces; lock/login raster references remain unchanged."
+    ],
+    "status": "specified-design; application integration unverified"
+  },
+  {
+    "number": 21,
+    "name": "Workspace indicators",
+    "tokens": [
+      "workspace.active",
+      "workspace.activeText",
+      "workspace.idle",
+      "workspace.urgent"
+    ],
+    "requirements": [
+      "Four workspaces, active 2; 34 px step, 26×20 px active box in 26 px bar.",
+      "Urgent dot separate from selection; no app shortcut insertion."
+    ],
+    "acceptance": [
+      "Preview idle/active/urgent and preserve exact bar asset elsewhere."
+    ],
+    "status": "specified-design; application integration unverified"
+  },
+  {
+    "number": 22,
+    "name": "Screen transitions",
+    "tokens": [
+      "panel.background",
+      "panel.outline",
+      "panel.heading",
+      "panel.text",
+      "panel.tab"
+    ],
+    "requirements": [
+      "Small card open/tucked storyboard. Body clipped within owner during motion.",
+      "Proposed duration 160 ms; cubic-bezier(.2,0,0,1); reduced motion uses immediate state switch."
+    ],
+    "acceptance": [
+      "Static storyboard is not animation acceptance; actual motion and reduced motion remain to validate."
+    ],
+    "status": "specified-design; application integration unverified"
+  },
+  {
+    "number": 23,
+    "name": "Selection highlights",
+    "tokens": [
+      "selection_background",
+      "selection_foreground",
+      "hyprland_active_border",
+      "ui.hover",
+      "ui.pressed",
+      "ui.disabled",
+      "status.error"
+    ],
+    "requirements": [
+      "Distinct normal, hover, pressed, selected, focused, disabled, invalid states.",
+      "Gold selection is an explicit background/text pair; focus is an outline."
+    ],
+    "acceptance": [
+      "Show selected text on its real background; report contrast rather than assume readability."
+    ],
+    "status": "specified-design; application integration unverified"
+  },
+  {
+    "number": 24,
+    "name": "Login screen",
+    "tokens": [
+      "background",
+      "accent",
+      "foreground",
+      "selection_background",
+      "selection_foreground",
+      "status.error"
+    ],
+    "requirements": [
+      "Preserve monumental weathered navy/gold embossed eagle background.",
+      "Compact Judge Identification / Justice Department form, anElectricMonk, password, Sign in, Hyprland selector.",
+      "Require idle, focused, error, disabled and session menu states after layers exist."
+    ],
+    "acceptance": [
+      "Preferred raster reference preserved. Background/emblem/UI must be separated before independent palette propagation."
+    ],
+    "status": "reference-artwork-needs-layers"
+  }
+]

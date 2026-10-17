@@ -1,0 +1,195 @@
+{
+  "schemaVersion": 1,
+  "scope": "Mega-City One curated design inputs; original generated history preserved",
+  "promoted": [
+    {
+      "path": "theme/mega-city-one/source/palette.json",
+      "origin": "output/mega-city-one-system-v3/palette.json",
+      "role": "canonical design input",
+      "bytes": 6944,
+      "sha256": "7536751eef9fda450e5e52fc0b5b07ed7fdcb8ef0d70e8321c4737335db889b7"
+    },
+    {
+      "path": "theme/mega-city-one/source/typography.json",
+      "origin": "output/mega-city-one-system-v3/typography.json",
+      "role": "canonical design input",
+      "bytes": 1154,
+      "sha256": "bbcd4c3f3d7350f52d2d3076e26d57e27d547d802eb3296d50bdb10de890640a"
+    },
+    {
+      "path": "theme/mega-city-one/source/effects.json",
+      "origin": "output/mega-city-one-system-v3/effects.json",
+      "role": "canonical design input",
+      "bytes": 123,
+      "sha256": "7012b6d0fa9e665dbe63931637a37a867a6b5be366df726c4b66d191e2d430e4"
+    },
+    {
+      "path": "theme/mega-city-one/source/areas.json",
+      "origin": "output/mega-city-one-system-v3/areas.json",
+      "role": "canonical design input",
+      "bytes": 22448,
+      "sha256": "cf7d9ac04c13f925422c96be7ce0d9b45d31db79c6e9b993c428ff3231843d83"
+    },
+    {
+      "path": "theme/mega-city-one/source/assets/emblem.source.svg",
+      "origin": "output/mega-city-one-system-v3/assets/emblem.source.svg",
+      "role": "canonical asset or identity metadata",
+      "bytes": 422,
+      "sha256": "7d4d457963108bcf47b6ee192cfc21fd67f0964832d224789a9cc5cfb53bccfd"
+    },
+    {
+      "path": "theme/mega-city-one/source/assets/emblem-design.json",
+      "origin": "output/mega-city-one-system-v3/assets/emblem-design.json",
+      "role": "canonical asset or identity metadata",
+      "bytes": 618,
+      "sha256": "046c7c3b1144aece20440dff83fd5e36e6c0527d6124588a4b7c63ca24301438"
+    },
+    {
+      "path": "theme/mega-city-one/source/assets/folder.source.svg",
+      "origin": "output/mega-city-one-system-v3/assets/folder.source.svg",
+      "role": "canonical asset or identity metadata",
+      "bytes": 206,
+      "sha256": "49156b3ab25290b708f9e77dc136e5adef4b252eca4b6d192f3af1e4455ad108"
+    },
+    {
+      "path": "theme/mega-city-one/source/assets/symbols.json",
+      "origin": "output/mega-city-one-system-v3/assets/symbols.json",
+      "role": "canonical asset or identity metadata",
+      "bytes": 1459,
+      "sha256": "e8a23a27adaf0761070bccafcc0b448c6a8de9d250790158b3fdc7f63e0de2ae"
+    },
+    {
+      "path": "theme/mega-city-one/source/assets/bar-icons.json",
+      "origin": "output/mega-city-one-system-v3/assets/bar-icons.json",
+      "role": "canonical asset or identity metadata",
+      "bytes": 6927,
+      "sha256": "8ec3b9b30619182f1b5022f950b4e0c5338e3eec5067b4ef9983405d2054532b"
+    },
+    {
+      "path": "theme/mega-city-one/source/assets/bar-states.json",
+      "origin": "output/mega-city-one-system-v3/assets/bar-states.json",
+      "role": "canonical asset or identity metadata",
+      "bytes": 417,
+      "sha256": "76b2d384a80464bcca10e274071fc45ad685d3b055f8c7f25b3a17d137df9a72"
+    },
+    {
+      "path": "theme/mega-city-one/source/assets/wallpaper.png",
+      "origin": "output/mega-city-one-system-v3/assets/wallpaper.png",
+      "role": "existing background; wallpaper redesign deferred",
+      "bytes": 2299326,
+      "sha256": "7fc952ade469f9fbcb2597250ed0654fc6fbeb69996eaa785f8bd5a47bffeeab"
+    },
+    {
+      "path": "theme/mega-city-one/source/fonts/ShureTechMonoNerdFontMono-Regular.ttf",
+      "origin": "output/mega-city-one-system-v3/fonts/ShureTechMonoNerdFontMono-Regular.ttf",
+      "role": "bundled font or licence notice",
+      "bytes": 2336172,
+      "sha256": "9a821c1499aeab3c7cb03ab606678ffaca681497d5e0f0aa96a610ba9ff92a01"
+    },
+    {
+      "path": "theme/mega-city-one/source/fonts/ShureTechMono-OFL.txt",
+      "origin": "output/mega-city-one-system-v3/fonts/ShureTechMono-OFL.txt",
+      "role": "bundled font or licence notice",
+      "bytes": 4520,
+      "sha256": "a2ddb2e4b4fd2b9ada3f53461bf33d9e20f54f84d7880a581f90cb825db6c5f6"
+    },
+    {
+      "path": "theme/mega-city-one/source/fonts/PlexSans-Variable.ttf",
+      "origin": "output/mega-city-one-system-v3/fonts/PlexSans-Variable.ttf",
+      "role": "bundled font or licence notice",
+      "bytes": 537244,
+      "sha256": "3b031aa4216174205bd8471f88a49b91f093169e9e87bd5262242bc5967fe2e3"
+    },
+    {
+      "path": "theme/mega-city-one/source/fonts/PlexSans-OFL.txt",
+      "origin": "output/mega-city-one-system-v3/fonts/PlexSans-OFL.txt",
+      "role": "bundled font or licence notice",
+      "bytes": 4456,
+      "sha256": "7e6b2818edbd8f6a01ae80641cc8f16a51080d08fb4e532be3a0b6f74adb07da"
+    },
+    {
+      "path": "theme/mega-city-one/source/fonts/JetBrains-Regular.ttf",
+      "origin": "output/mega-city-one-system-v3/fonts/JetBrains-Regular.ttf",
+      "role": "bundled font or licence notice",
+      "bytes": 2469104,
+      "sha256": "0ec29a68b539ece7078fc714cebff0c0accb2f4948f8f7963d9f5e86633b12d9"
+    },
+    {
+      "path": "theme/mega-city-one/source/fonts/JetBrains-license/OFL.txt",
+      "origin": "output/mega-city-one-system-v3/fonts/JetBrains-license/OFL.txt",
+      "role": "bundled font or licence notice",
+      "bytes": 4399,
+      "sha256": "30f0c136e3c88e422d0791acd97238870f9054a9729bc34cf2ff0d4ed8cac4ad"
+    },
+    {
+      "path": "docs/reference/mega-city-one/lock-screen-reference.png",
+      "origin": "output/mega-city-one-system-v3/assets/lock-screen-reference.png",
+      "role": "approved reference only; contains baked-in UI, never runtime wallpaper",
+      "bytes": 2270698,
+      "sha256": "8b8edaeaa2f8964b1701b140966a5336fc840b3abe3e9c712fba5fb8dfb107c1"
+    },
+    {
+      "path": "docs/reference/mega-city-one/login-screen-reference.png",
+      "origin": "output/mega-city-one-system-v3/assets/login-screen-reference.png",
+      "role": "approved reference only; contains baked-in UI, never runtime wallpaper",
+      "bytes": 2585835,
+      "sha256": "fa6043805223a95a49a4fb82e34ea9a0c572a644ad47501804ed7f00c1b4c5b2"
+    },
+    {
+      "path": "docs/reference/mega-city-one/00-master-desktop.png",
+      "origin": "output/mega-city-one-system-v3/screens/00-master-desktop.png",
+      "role": "design acceptance reference, not installed-theme evidence",
+      "bytes": 1471358,
+      "sha256": "4d86e2165d5d8b2030d5fede511458500fd9b9c01a63826389b12b6fd56492e4"
+    },
+    {
+      "path": "docs/reference/mega-city-one/02-colour-palette.png",
+      "origin": "output/mega-city-one-system-v3/screens/02-colour-palette.png",
+      "role": "design acceptance reference, not installed-theme evidence",
+      "bytes": 858300,
+      "sha256": "ee89b7b0ed19a792950bdf3d58532194b558845eb2541d87846578d1ff610815"
+    },
+    {
+      "path": "docs/reference/mega-city-one/07-application-launcher.png",
+      "origin": "output/mega-city-one-system-v3/screens/07-application-launcher.png",
+      "role": "design acceptance reference, not installed-theme evidence",
+      "bytes": 2248510,
+      "sha256": "0a13b9944a97a1ec18b3230ffc2673db3d23763747258794024f257a6ffb025e"
+    },
+    {
+      "path": "docs/reference/mega-city-one/08-omarchy-shell-bar.png",
+      "origin": "output/mega-city-one-system-v3/screens/08-omarchy-shell-bar.png",
+      "role": "design acceptance reference, not installed-theme evidence",
+      "bytes": 670075,
+      "sha256": "f9cae6747c77a5a8005e5faafca56aea2907c3f668337301df0ea838612e0b78"
+    },
+    {
+      "path": "docs/reference/mega-city-one/09-notifications.png",
+      "origin": "output/mega-city-one-system-v3/screens/09-notifications.png",
+      "role": "design acceptance reference, not installed-theme evidence",
+      "bytes": 2363129,
+      "sha256": "433273199aefe3cac3950d39306771ada184eaadb6dd5e84540f1f8b19447748"
+    },
+    {
+      "path": "docs/reference/mega-city-one/13-icons.png",
+      "origin": "output/mega-city-one-system-v3/screens/13-icons.png",
+      "role": "design acceptance reference, not installed-theme evidence",
+      "bytes": 634169,
+      "sha256": "485577af59328686359b59eec4cea3d24ad29d05265aacf944a7a3652c0ef2ce"
+    },
+    {
+      "path": "docs/reference/mega-city-one/19-fonts.png",
+      "origin": "output/mega-city-one-system-v3/screens/19-fonts.png",
+      "role": "design acceptance reference, not installed-theme evidence",
+      "bytes": 645515,
+      "sha256": "05c02579bc6f9f2b0f224f8a8447c0960b5a492450d1d754da85c8b4db0b7437"
+    },
+    {
+      "path": "docs/reference/mega-city-one/20-background-effects.png",
+      "origin": "output/mega-city-one-system-v3/screens/20-background-effects.png",
+      "role": "design acceptance reference, not installed-theme evidence",
+      "bytes": 626356,
+      "sha256": "48208f1a44f590f344c03c97623f393fc52a023d5650bf9a5a03eacb479a3f71"
+    }
+  ]
+}
