@@ -129,7 +129,7 @@
     "shell.image-picker.unselected-border": "$foreground"
   },
   "alpha": {
-    "shell.bar.background-alpha": 1,
+    "shell.bar.background-alpha": 0.9,
     "shell.controls.normal-fill-alpha": 0.04,
     "shell.controls.normal-border-alpha": 0.4,
     "shell.controls.hover-cursor-fill-alpha": 0.08,

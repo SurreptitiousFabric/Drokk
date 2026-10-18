@@ -1,10 +1,10 @@
 const escape = value => String(value).replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('"', '&quot;');
 
-export function previewTheme(model, typography) {
+export function previewTheme(model, typography, name = 'Mega-City One') {
   const c = model.colors;
   const swatches = Object.entries(c).map(([id, value]) =>
     `<li><span style="background:${value}"></span><code>${escape(id)}</code><b>${value}</b></li>`).join('');
-  return `<!doctype html><html lang="en"><meta charset="utf-8"><title>Mega-City One package preview</title>
+  return `<!doctype html><html lang="en"><meta charset="utf-8"><title>${escape(name)} package preview</title>
 <style>
 @font-face{font-family:ThemeMono;src:url('../theme/fonts/ShureTechMonoNerdFontMono-Regular.ttf')}
 @font-face{font-family:ThemeInterface;src:url('../theme/fonts/PlexSans-Variable.ttf');font-weight:100 900}
@@ -13,7 +13,7 @@ h1,h2{color:${c.accent}}main{max-width:1200px;margin:auto}section{background:${c
 code,pre{font-family:ThemeMono,monospace;font-synthesis:none}pre{white-space:pre-wrap}.accent{color:${c.accent}}.success{color:${c.green}}.error{color:${c['status.error']}}
 img{width:100px;height:100px}button{background:${c.selection_background};color:${c.selection_foreground};border:0;padding:12px 24px;font:inherit}
 ul{display:grid;grid-template-columns:repeat(auto-fit,minmax(330px,1fr));list-style:none;padding:0;gap:10px}li{display:flex;gap:10px;align-items:center}li span{width:28px;height:28px;flex-shrink:0;border:1px solid ${c.muted}}li b{margin-left:auto;font-size:12px}
-</style><main><h1>Mega-City One</h1><p>Package foundation preview. Native desktop layouts and authentication are not yet implemented.</p>
+</style><main><h1>${escape(name)}</h1><p>Package foundation preview. Native desktop layouts and authentication are not yet implemented.</p>
 <p id="font-status">Loading bundled fonts…</p><section><h2>Shared assets and terminal roles</h2><img src="../theme/assets/emblem.svg" alt="Classic eagle"><img src="../theme/assets/folder.svg" alt="Folder">
 <pre><span class="accent">anElectricMonk@omarchy ~ ❯</span> git status
 On branch main

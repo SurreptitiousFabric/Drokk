@@ -7,6 +7,7 @@ import qs.Ui
 BarWidget {
     id: root
     moduleName: "megacity.workspaces"
+    visible: false
     function workspaceById(id) {
         var values = Hyprland.workspaces.values
         for (var i=0; i<values.length; i++) if (values[i].id === id) return values[i]

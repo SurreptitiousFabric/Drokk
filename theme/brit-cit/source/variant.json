@@ -1,0 +1,33 @@
+{
+  "id": "brit-cit",
+  "name": "Brit-Cit",
+  "kind": "City theme",
+  "emblem": "selected:lion-architectural",
+  "art": 0,
+  "colors": {
+    "background": "#101922",
+    "dark_background": "#101821",
+    "darker_background": "#090F16",
+    "lighter_background": "#232B35",
+    "accent": "#C6AD78",
+    "blue": "#718B9D",
+    "art.folder": "$blue"
+  },
+  "selectedDesign": {
+    "option": "C",
+    "name": "Architectural"
+  },
+  "identity": {
+    "mainEmblem": "Architectural lion C replaces eagle",
+    "nameBadge": "Union Jack incorporated behind the nameplate; badge treatment is a design interpretation",
+    "lockBadge": "Emblem, not name badge: architectural lion C above and behind Union Jack shield; no nameplate or enclosing border"
+  },
+  "alpha": {
+    "shell.bar.background-alpha": 0.9
+  },
+  "shell": {
+    "bar": {
+      "icon-font": 15
+    }
+  }
+}

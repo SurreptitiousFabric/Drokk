@@ -78,3 +78,11 @@ run = "node scripts/check-window-card.mjs --isolated --hyprpm"
 [tasks."theme:check-safety"]
 description = "Check bar patch safety and native service compatibility fallback in fixtures"
 run = "node --test --test-concurrency=1 tests/bar-colours.test.mjs tests/compatibility.test.mjs"
+
+[tasks."theme:build-brit-cit"]
+description = "Build Brit-Cit using the shared implementation and selected artwork"
+run = "node scripts/build-variant.mjs"
+
+[tasks."theme:build-death"]
+description = "Build Judge Death from selected artwork and the shared implementation"
+run = "node scripts/build-variant.mjs judge-death"

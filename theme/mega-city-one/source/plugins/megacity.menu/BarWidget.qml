@@ -14,6 +14,7 @@ BarWidget {
         anchors.fill: parent
         bar: root.bar
         tooltipText: "Omarchy menu"
+        opticalSize: Commons.Style.bar.iconCanvas * 1.5
         iconComponent: Component {
             Item {
                 Image {

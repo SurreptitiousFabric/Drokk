@@ -67,7 +67,7 @@ function updateTheme(packageRoot, l, previous, packageHash) {
   fs.rmSync(rollback, { recursive: true });
 }
 export function installTheme(packageRoot, home, dryRun = false) {
-  checkPackage(packageRoot);
+  if (checkPackage(packageRoot).name !== 'mega-city-one') throw new Error('This installer supports Mega-City One only; Brit-Cit installation is not enabled');
   const l = fixtureLocations(home);
   const packageHash = hash(fs.readFileSync(path.join(packageRoot, 'manifest.json')));
   if (exists(l.receipt)) {

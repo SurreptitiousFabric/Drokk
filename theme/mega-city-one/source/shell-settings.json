@@ -2,7 +2,8 @@
   "bar": {
     "size-horizontal": 28,
     "size-vertical": 30,
-    "scale-with-font": false
+    "scale-with-font": false,
+    "icon-font": 15
   },
   "font": {
     "base-size": "$size.barPx",

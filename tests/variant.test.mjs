@@ -1,0 +1,52 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+import os from 'node:os';
+import path from 'node:path';
+import { buildVariant } from '../scripts/build-variant.mjs';
+import { buildTheme, sourceDirectory, checkPackage } from '../scripts/build-theme.mjs';
+
+test('Brit-Cit inherits the shared package with selected assets and propagating colours, without changing Mega-City One', t => {
+  const root = fs.mkdtempSync(path.join(os.tmpdir(), 'drokk-variant-'));
+  t.after(() => fs.rmSync(root, { recursive: true, force: true }));
+  const original = buildTheme(sourceDirectory, path.join(root, 'before'));
+  const variant = path.join(root, 'variant');
+  fs.cpSync('theme/brit-cit/source', variant, { recursive: true });
+  const out = path.join(root, 'brit');
+  buildVariant(variant, out);
+  assert.equal(checkPackage(out).name, 'brit-cit');
+  const read = p => fs.readFileSync(path.join(out, p));
+  assert.match(read('theme/colors.toml').toString(), /accent = "#C6AD78"/);
+  assert.match(read('theme/colors.toml').toString(), /background = "#101922"/);
+  assert.deepEqual(read('plugins/megacity.lock/lock-emblem.png'), fs.readFileSync(path.join(variant, 'assets/lock-emblem.png')));
+  assert.deepEqual(read('sddm/brit-cit/background.png'), fs.readFileSync(path.join(variant, 'assets/login-reference.png')));
+  const originalEmblem = read('theme/assets/emblem.svg');
+  const config = JSON.parse(fs.readFileSync(path.join(variant, 'variant.json')));
+  config.colors.accent = '#115577';
+  fs.writeFileSync(path.join(variant, 'variant.json'), JSON.stringify(config));
+  buildVariant(variant, out);
+  assert.match(read('theme/colors.toml').toString(), /selection_background = "#115577"/);
+  assert.notDeepEqual(read('theme/assets/emblem.svg'), originalEmblem);
+  assert.deepEqual(buildTheme(sourceDirectory, path.join(root, 'after')), original);
+});
+
+test('Judge Death builds selected pterodactyl artwork, bone/green palette and a live Dark Judges login form', t => {
+  const root = fs.mkdtempSync(path.join(os.tmpdir(), 'drokk-death-'));
+  t.after(() => fs.rmSync(root, { recursive: true, force: true }));
+  const source = path.join(root, 'source'), out = path.join(root, 'package');
+  fs.cpSync('theme/judge-death/source', source, { recursive: true });
+  buildVariant(source, out);
+  assert.equal(checkPackage(out).name, 'judge-death');
+  const read = p => fs.readFileSync(path.join(out, p));
+  assert.match(read('theme/colors.toml').toString(), /background = "#101710"/);
+  assert.match(read('theme/colors.toml').toString(), /foreground = "#E0DCCB"/);
+  assert.match(read('theme/shell.toml').toString(), /icon-font = 15/);
+  assert.deepEqual(read('plugins/megacity.lock/lock-emblem.png'), fs.readFileSync(path.join(source, 'assets/lock-emblem.png')));
+  assert.deepEqual(read('sddm/judge-death/background.png'), fs.readFileSync(path.join(source, 'assets/login-reference.png')));
+  assert.match(read('sddm/judge-death/LoginForm.qml').toString(), /DARK JUDGES/);
+  const config = JSON.parse(fs.readFileSync(path.join(source, 'variant.json')));
+  config.colors.accent = '#115577';
+  fs.writeFileSync(path.join(source, 'variant.json'), JSON.stringify(config));
+  buildVariant(source, out);
+  assert.match(read('theme/colors.toml').toString(), /selection_background = "#115577"/);
+});

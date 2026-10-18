@@ -76,3 +76,26 @@ Restart SDDM only after accepting that any active graphical sessions will end.
 Do not remove PAM, session, stock-theme or unrelated configuration files.
 
 Desktop theme switching does not require or invoke this privileged operation.
+
+## Brit-Cit login
+
+On 2026-10-18 the user authorised and selected the separate Brit-Cit greeter:
+`/usr/share/sddm/themes/brit-cit`, selected by
+`/etc/sddm.conf.d/99-z-drokk-variant.conf` (`Current=brit-cit`). Its installed QML,
+artwork and configuration match the checked package. SDDM was not restarted;
+real Brit-Cit login/session acceptance is pending the user's next login.
+
+The new selection overrides the retained eagle selection. Removing only
+`99-z-drokk-variant.conf`, after confirming its contents, restores the existing
+Mega-City One selection. Desktop theme switching does not run privileged greeter
+changes; the login remains Brit-Cit until explicitly selected otherwise.
+
+## Judge Death login selection
+
+On 2026-10-18 the user explicitly selected Judge Death for desktop and login.
+`/usr/share/sddm/themes/judge-death` is installed and the existing owned
+`99-z-drokk-variant.conf` now contains `Current=judge-death`. All ten installed
+files match its checked package. The previous Brit-Cit theme remains installed;
+no stock files, authentication settings or SDDM service were changed. Removing
+that owned variant selection restores the retained eagle selection. Real Death
+login/session acceptance awaits the user's next login.

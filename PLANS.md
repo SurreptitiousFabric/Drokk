@@ -91,3 +91,17 @@ differences, with source review and validation in this session rather than a hum
 review prerequisite. The initial eagle-only scope was subsequently extended to the bounded companions
 listed in [the companion guide](docs/companions.md), plus separate SDDM installation.
 The normal theme remains independent; authentication policy changes stay excluded.
+
+## Brit-Cit extension
+
+The user authorised [Phase 09: Brit-Cit](harness/build/phase-09-brit-cit.md)
+on 2026-10-18. Work on its separate package before public installation packaging;
+retain the live Mega-City One desktop. This supersedes the earlier variant exclusion
+for Brit-Cit only. Other variants remain preserved design work.
+
+## Judge Death extension
+
+The user authorised [Phase 10: Judge Death](harness/build/phase-10-judge-death.md)
+on 2026-10-18, after applying the accepted Brit-Cit bar settings to Mega-City One.
+Use selected option A and shared implementation. Keep Brit-Cit live while preparing
+Death; do not infer a greeter selection change from preparation alone.

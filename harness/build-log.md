@@ -761,3 +761,273 @@ mise run theme:check passed 200 files; local Markdown links resolve. The public
 repository contains development source, with the pending standalone installation
 layout and wider compatibility clearly stated. Public source publication does not
 complete the installable-release or broader architecture acceptance work.
+
+### 2026-10-18 — Brit-Cit shared package, In progress
+
+User authorised Brit-Cit next, deferring direct public install packaging. Added
+Phase 09 and promoted the preserved selected architectural lion bar source,
+flat lion/Union Jack lock PNG and embossed lion login illustration. Reused the
+working production implementation through a temporary merged source. Palette
+uses existing Brit-Cit overrides; no live desktop/configuration changes.
+
+Observed RED: initial test import failed because the new module did not exist;
+a minimal shared-build implementation then failed behaviourally with identity
+mega-city-one instead of brit-cit. GREEN: separate Brit-Cit manifest, native palette,
+exact raster asset equality, accent propagation and unchanged Mega-City One output.
+Initial path generalisation exposed loop-variable shadowing and was corrected.
+Full mise run theme:test: 50 passed. Native rendering exposed an unsupported SVG
+filter and form overlap; flattened the existing bar composition using librsvg,
+adapted the shared login placement and replaced its clipped eagle with the lion.
+Final focused package/install/artwork tests: 5 passed. Build/check: 200 files.
+
+Native Qt login submission/failure test: 3 passed. Offscreen login capture initially
+reported failure because its save() method returns void; the file existed. Corrected
+the capture harness, reran (3 passed) and visually inspected the image. Finite native
+lock-view check reported LOCK_VIEW_CHECK_PASS for submit/clear and disabled guard;
+no authentication loaded. Inspected screenshot; inherited current host shell colours,
+so it establishes layout/artwork only. Scoped captures: harness/evidence/brit-cit/.
+
+AI-slop review corrected the legacy installer acceptance hazard; explicit fixture
+refusal passed without writes. Source checks pass; lifecycle/public install/live
+Brit-Cit activation and real authentication acceptance remain outstanding. No commit,
+push or desktop activation performed in this slice. Raster artwork colour changes
+remain an explicit exception. See phase-09 context/review and theme/brit-cit/README.md.
+
+### 2026-10-18 — user-authorised Brit-Cit standard-theme activation
+
+User requested switching to Brit-Cit and explicitly approved Omarchy's normal
+parallel refresh/background-cache processes. Validated the 200-file package and
+copied its standard theme payload to the previously absent user theme directory
+~/.config/omarchy/themes/brit-cit, then ran omarchy theme set brit-cit (exit 0).
+Current theme reports Brit Cit; live palette contains #C6AD78 accent and #101922
+background. hyprctl configerrors returned no errors; menu ping returned ok.
+The existing departure hook reports inactive Drokk companions and no megacity.*
+bar entries remain. This is standard-theme activation only: Brit-Cit lion
+companions are not installed/activated, and SDDM remains unchanged. This limitation
+was explained before the switch. No new claim of full Brit-Cit acceptance.
+
+### 2026-10-18 — Brit-Cit companions and login connected, In progress
+
+User explicitly authorised connecting companions and changing login, and agreed
+variant-switch lifecycle tests. RED: fixture activation of Brit-Cit returned false.
+GREEN: explicit profile overrides exchange owned bar/lock assets, GTK imports and
+Yazi colours, restore prior variant before applying the next, and preserve stock
+recovery settings/unrelated user edits. Lifecycle suite: 15 passed. Final complete
+mise run theme:test: 51 passed. Both packages rebuild/check with 201 files.
+
+Added lossless SVG containers for each exact lock PNG, retaining the PNG and its
+native dimensions. Updated the shared lock view's asset reference; native view-only
+preview passed submit/clear and disabled guard without PAM. Native Qt login check:
+3 passed. Installed-file preflight matched the previous menu and lock sources and
+hook runtime; unlocked guard passed. Applied the prepared profile/runtime and shared
+lock reference only after stopping the shell, then restarted and applied Brit-Cit.
+Profile reported active, no preserved-file conflicts; Hyprland configerrors empty.
+
+The authorised privileged helper installed /usr/share/sddm/themes/brit-cit and
+/etc/sddm.conf.d/99-z-drokk-variant.conf (Current=brit-cit), preserving the old eagle
+selection and all stock files. SDDM was not restarted. Six core installed QML/art/
+configuration files were byte-compared to the checked package successfully; the
+installer also compared every copied file and checked readability as sddm.
+
+Actual normal desktop switching (retaining wallpaper) Drokk -> Dune -> Brit-Cit
+passed: exact eagle assets restored on Drokk; Dune removed megacity bar entries;
+Brit-Cit restored exact lion assets, active profile, empty conflicts, menu ping ok
+and no Hyprland config errors. Inspected scoped live bar capture showing lion.
+Captures remain ignored in harness/evidence/brit-cit. Real Brit-Cit lock/unlock and
+login/session start remain unverified; user performs those personally. Desktop
+switches do not make privileged login changes; login remains Brit-Cit until an
+explicit selection change. No logout/reboot, packaged Omarchy modification or push.
+
+### 2026-10-18 — Brit-Cit bar lion optical size
+
+User requested a larger lion without changing bar height. First applied 1.35 times
+the native 16px canvas (21.6px), visually confirmed the live lion and reran all 15
+lifecycle tests successfully. User then requested a little larger after discussing
+the available 28px bar height. Set Brit-Cit-only opticalSize to 1.5 times the native
+canvas (24px). Rebuilt/checked the 201-file package and refreshed the explicit
+variant profile through disable/enable; no preserved-file conflicts reported.
+Menu ping ok and Hyprland configerrors empty. Bar height and Drokk eagle unchanged.
+
+### 2026-10-18 — Brit-Cit bar contrast trial
+
+User authorised 90% navy bar background for light wallpaper. Added the Brit-Cit
+alpha override (shell.bar.background-alpha=0.9), inherited through the shared model.
+The explicit variant profile selects native bar.transparent=false so Omarchy uses
+that alpha; Drokk retains its previous transparency preference. Session transitions
+capture the original preference once, apply the selected variant preference, and
+restore it on departure if unchanged by the user. Lifecycle suite: 15 passed.
+Rebuilt Brit-Cit (201 files), verified the installed shell change was opacity-only,
+updated the owned profile/runtime and applied using the normal native switch with
+wallpaper retained. Re-enabled companions after the deliberate preparatory disable.
+Live state: active/no conflicts, bar.transparent=false, alpha=0.9, configerrors empty.
+Inspected scoped bar capture at harness/evidence/brit-cit/bar-navy.png. Icons remain
+opaque and lion stays 24px; bar height remains 28px. No login changes in this trial.
+
+### 2026-10-18 — Brit-Cit status icons and workspace visibility
+
+User requested 15px standard right-hand bar icons and no workspace numbers. Added
+Brit-Cit's native bar.icon-font=15 override and variant-only workspace widget
+visibility=false; its slot collapses using Omarchy's existing visible-item sizing.
+Registered that QML file in the existing reversible variant profile, retaining the
+unmodified shared widget for Drokk/stock restoration. No workspace bindings or card
+changes. Rebuilt 201-file package, verified installed files matched before the
+bounded update, then refreshed profile and theme with wallpaper retained. Active
+profile reported no conflicts. All 15 lifecycle tests passed; menu ping ok and
+Hyprland configerrors empty. Scoped live capture: bar-no-workspaces.png.
+
+### 2026-10-18 — user bar layout adjustment
+
+User requested date/time, weather and updates on the left in the former workspace
+area. Used native omarchy bar move for clock (left index 1), weather (after clock)
+and system-update (after weather). Read-back confirms lion -> clock -> weather ->
+updates, followed by the already hidden workspace widget. Preserved clock formats,
+center indicators/keyboard-layout, and all right-side entries. This is an explicit
+personal bar-layout preference made through Omarchy, not a theme-owned override.
+
+### 2026-10-18 — weather placement correction
+
+User first requested weather on the right, then corrected the preference to the
+middle. Native omarchy bar move placed omarchy.weather at center index 0. Read-back
+confirms weather is in center and absent from right; date/time and updates remain
+left. Other widgets and their settings were retained.
+
+### 2026-10-18 — shared accepted bar and Judge Death preparation, In progress
+
+User requested the same bar size/position/background for Mega-City One, then Judge
+Death work. Promoted accepted presentation to the shared source: 28px bar, native
+15px icon glyphs, 24px emblem canvas, hidden workspace widget, background alpha .9.
+Mega-City One uses its own navy and eagle; personal date/time+updates left and
+weather center layout already applies across themes. Updated default profile
+preference and retained the original recovery fragments while refreshing enabled
+base QML. Actual Drokk -> Brit-Cit cycle verified size, alpha, hidden workspaces,
+correct eagle and no config errors. Brit-Cit was left active.
+
+Started Phase 10. Promoted Death A selected fanged-skull SVG and login illustration
+byte-for-byte. Rendered the same SVG to a transparent lock PNG with librsvg; no
+redraw. Used the preserved near-black/green/bone palette. RED: Death package test
+failed with Unsupported variant. GREEN: explicit third theme identity, 201-file
+package, exact artwork equality, native colours and shared bar settings, Dark Judges
+heading and palette propagation. Generalised the existing profile constructor for
+the two explicit variants; no parallel installer or appearance implementation.
+
+Adapted shared login form presentation to the existing wide plaque (x370/y565,
+885x180); live username/password/session/submission/failure logic remains shared.
+Native Qt form check: 3 passed. Offscreen login capture: 3 passed. Finite native
+lock-view check passed submit/clear and disabled guard without PAM. The lock preview
+now uses its own temporary HOME with candidate colours/shell files; it no longer
+inherits the live theme's palette. Inspected both actual captures under
+harness/evidence/judge-death/. Wallpaper remains inherited, separately deferred.
+
+User agreed the existing package/native/lifecycle checks for Death. Fixtures cover
+Death -> Brit-Cit -> Drokk -> Death -> stock, restoring appearance and original
+preferences. Final mise run theme:test: 53 passed. Shared/variant package checks
+pass. AI-slop review found no remaining actionable issue in this bounded slice.
+Prepared installed user theme ~/.config/omarchy/themes/judge-death and registered
+its companion profile, preserving active Brit-Cit. Death's SDDM package is prepared,
+not installed/selected. Current login remains Brit-Cit; no logout, reboot or live
+Death activation. Real Death authentication, public installers and greeter selection
+workflow remain separate acceptance/release work. No commit/push performed.
+
+### 2026-10-18 — user-authorised Death desktop and login activation
+
+User explicitly requested Death login selection followed by the desktop switch.
+Rechecked the 201-file package and native Qt form (3 passed). The existing variant
+selection was exactly the known root-owned Current=brit-cit file; Death's root theme
+was absent. A bounded privileged transaction temporarily retained that selection,
+ran the existing checked installer for judge-death, verified its new selection,
+then removed the temporary previous file. Failure would restore the previous
+selection if no concurrent file appeared. Installer succeeded without restarting
+SDDM. No authentication/session-security settings changed.
+
+Ran OMARCHY_THEME_SKIP_BACKGROUND=1 omarchy theme set judge-death. Verified active
+Death profile with no preserved conflicts; exact skull bar/lock asset equality;
+near-black #101710 and accent #A7BA74 palette; and all ten installed root greeter
+files byte-equal to the package. Current theme reports Judge Death; menu ping ok,
+Hyprland configerrors empty and lock status unlocked/secure=false. Inspected scoped
+live bar capture showing the Death insignia. Existing wallpaper retained. Desktop
+and selected next-login greeter now both use Death. Real lock/unlock and login
+remain personal user acceptance; no logout, reboot or SDDM restart performed.
+
+### 2026-10-18 — original Death A / Pterodactyl correction
+
+User requested original pterodactyl after identifying the A/B/C selection mix-up.
+Preserved prior canonical images in output/dredd-theme-family/archive/death-before-
+pterodactyl. Extracted original flat pterodactyl directly from the study (SVG crop
+x24/y140/w510/h355 and background alpha filter); no tracing/redraw. Native librsvg
+lock derivative uses its natural 510x355 viewport. Updated canonical selection and
+provenance. Used the imagegen skill/built-in tool to adapt the login relief with
+original option A as reference; copied result into canonical source. This relief
+is new artwork, distinct from the exact selected flat emblem.
+
+Adjusted Death-only native form to x416/y605, 840x145 below the relief's lower point.
+Build/check: 201 files. Native Qt form: 3 passed; offscreen capture: 3 passed;
+lock view submit/clear and disabled guard passed without authentication. Inspected
+login-pterodactyl.png and lock-pterodactyl.png. Final focused package/lifecycle tests:
+2 passed. No further broad run was needed for this bounded asset/presentation edit.
+
+Verified hashes of the prior ten root greeter files and staged/compared the ten
+new files with sddm readability checks. Replaced only the owned Death directory
+transactionally, retaining its selection; temporary prior directory removed after
+success. Updated owned user-theme/current emblem and registered profile after
+preflight equality, using disable/enable to avoid watched-QML races. Profile active,
+no conflicts; bar/lock assets and all ten installed login files equal checked
+package. Menu ping ok, configerrors empty. Inspected scoped bar-pterodactyl.png.
+Palette, layout, sizes and wallpaper retained. No SDDM restart/logout or real
+lock/login test. User's subsequent card workspace-list idea remains discussion only.
+
+### 2026-10-18 — live card occupied workspace list
+
+User requested their SPACE 4 (1, 2, 3) format. Added a small card-row formatter and
+adapted the existing renderer to mapped windows' normal workspaces. Exclude owner,
+empty/special workspaces and duplicates; sort by workspace ID and retain workspace
+names. Existing open listener plus close/move listeners damage cards after occupancy
+changes; listeners reset on unload. No polling/background metadata owner.
+
+RED: initial test lacked the new interface; minimal old-format implementation then
+failed the explicit SPACE 4 (1, 2, 3) assertion. GREEN: formatter/geometry tests pass.
+Native build succeeded against installed Hyprland 0.56.1 and GCC 16.1.1. Isolated
+card test initially failed its narrow-row OCR fixture (SPACE read as SiF0E); full
+native capture visibly contained SPACE 1 (3). Corrected the fixture to OCR the full
+card and extract its SPACE line. Final isolated check passed rendered occupied/
+empty list, 1x/2x edge input, shortcuts, body passthrough, animation, move/resize,
+stacking, grouped unload, fullscreen and close cleanup. Focused install/formatter/
+geometry tests: 4 passed. AI-slop review found no actionable issue in this slice.
+
+Updated the live local native card through the existing remove/install ownership
+commands, retaining a temporary copy only through activation. Verified old plugin
+unloaded before the new one loaded; configerrors empty. Previous temporary build
+removed after success. New binary SHA256:
+721f19b2e31abccd209ae5e470be7712862208c68fd14f6e345cf44943451cd6.
+Scoped live SPACE-row capture shows SPACE 1 (2, 3, 4), matching real occupied
+workspace IDs. Death remains active; no bar, lock/login or wallpaper changes.
+
+### 2026-10-18 — numeric workspace ten displayed as zero
+
+User requested shortcut-consistent 0 in owner and bracketed occupied-workspace
+labels. Added one presentation formatter used at both positions; real IDs,
+exclusion/dedup/sort and custom names remain unchanged. RED: explicit owner-ten
+assertion failed with the previous 10 output. GREEN: owner 0, bracketed 0, custom
+name preservation and existing geometry/occupancy tests passed (2 tests).
+Native build succeeded. Extended the finite isolated rendered-card check with
+workspace ten: SPACE 0 (1) and SPACE 1 (0), then empty-list restoration. All existing
+isolated input/scaling/lifecycle checks passed. Reviewed the bounded formatter/test
+diff against AI-slop checks; no actionable findings.
+
+Installed through the existing local remove/install ownership path, verified old
+plugin unload and new plugin load, and no config errors. Temporary previous build
+removed after success. Refreshed standalone hyprpm source package. Native binary:
+78db0e861c238ac5efb5e7aefd97fe5d25d8eccef5d706d30d5c987dc6b85120.
+Scoped live workspace row capture retained locally. No workspace bindings,
+underlying IDs, theme settings or authentication changes.
+
+### 2026-10-18 — authorised source commit and publication preparation
+
+User explicitly requested committing and pushing the accumulated work to Drokk.
+Inspected main, status, diff, origin and remote divergence; fetch showed main and
+origin/main identical before this commit. Reviewed the bounded implementation and
+new variant assets, retaining local generated design/evidence directories ignored.
+Final complete mise run theme:test: 54 passed. Changed-document local links: 29
+checked, no broken links. Staged scan: no valid known credential patterns, forbidden
+output/evidence paths, symlinks or oversized files. Root README remains 115 words.
+Removed one extra trailing blank line in the new Brit-Cit README. Publication is
+source-only; existing public installation and cross-hardware limitations remain.

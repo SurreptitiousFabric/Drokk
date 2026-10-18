@@ -39,6 +39,14 @@ function redPixels(w) {
     }
   return count;
 }
+function spaceText(window) {
+  fs.mkdirSync(evidence,{recursive:true});
+  const image=path.join(evidence,'space-card.png');
+  const geometry=`${window.at[0]+window.size[0]-208},${window.at[1]+window.size[1]-144} 218x132`;
+  run('grim',['-g',geometry,image]);
+  const text=run('tesseract',[image,'stdout','--psm','6'],{encoding:'utf8'}).trim();
+  return text.match(/^SPACE\b.*$/m)?.[0] ?? text;
+}
 function click(x, y) {
   const monitor = JSON.parse(ctl('monitors', '-j'))[0];
   run(path.join(temp, 'pointer'), [String(x), String(y), String(monitor.width/monitor.scale), String(monitor.height/monitor.scale)]);
@@ -137,6 +145,26 @@ end)
   ctl('reload');await delay(350);
   assert.equal(ctl('eval','assert(type(hl.plugin.drokk_card)=="table", "card action missing after reload")'),'ok');
   assert.equal(JSON.parse(ctl('monitors','-j'))[0].scale,2,'scaled output fixture');
+  dispatch(`hl.dsp.focus({window=${selector(b)}})`);
+  dispatch('hl.dsp.window.move({workspace="3", follow=false})');
+  await delay(300);
+  a=cardWindow('CardCheck-A');
+  assert.match(spaceText(a), /SPACE\s+1\s*\(3\)/, 'rendered card lists other occupied workspace');
+  dispatch('hl.dsp.focus({workspace="3"})');
+  dispatch('hl.dsp.window.move({workspace="10", follow=true})');
+  await delay(300);
+  b=cardWindow('CardCheck-B');
+  assert.match(spaceText(b), /SPACE\s+0\s*\(1\)/, 'workspace ten displays zero as owner');
+  dispatch('hl.dsp.focus({workspace="1"})');
+  await delay(200);
+  a=cardWindow('CardCheck-A');
+  assert.match(spaceText(a), /SPACE\s+1\s*\(0\)/, 'workspace ten displays zero in other occupied list');
+  dispatch('hl.dsp.focus({workspace="10"})');
+  dispatch('hl.dsp.window.move({workspace="1", follow=true})');
+  await delay(300);
+  a=cardWindow('CardCheck-A'); b=cardWindow('CardCheck-B');
+  assert.match(spaceText(a), /^SPACE\s+1$/, 'empty workspace disappears from rendered card');
+  console.log('PASS: rendered SPACE row follows occupied and emptied workspace');
   const edge=windows().sort((a,b)=>b.at[0]-a.at[0])[0];
   assert.ok(edge.at[0]+edge.size[0]+9<=1280,'full tab fits at screen edge');
   tab(edge);await delay(150);assert.equal(redPixels(edge),0,'2x edge tab tucks');

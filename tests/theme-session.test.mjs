@@ -178,3 +178,42 @@ test('removing a required companion restores stock services instead of enabling 
   assert.equal(JSON.parse(f.read('.config/omarchy/shell.json')).bar.layout.left[0].id,'omarchy.menu');
   assert.equal(f.values['font-name'],"'My Font'");
 });
+
+test('Brit-Cit and Drokk exchange owned appearance and emblem files, then restore stock without losing user edits', t => {
+  const f=fixture(t), profile=JSON.parse(f.read('.local/share/drokk/profile.json'));
+  profile.edits.push({path:'.config/omarchy/plugins/megacity.menu/emblem.svg',before:'eagle',after:'eagle',wholeFile:true});
+  profile.variants={'brit-cit':{edits:[
+    {path:'.config/example',before:'font=original\n',after:'font=brit\n'},
+    {path:'.config/omarchy/plugins/megacity.menu/emblem.svg',before:'eagle',after:'lion',wholeFile:true}
+  ]}};
+  f.write('.config/omarchy/plugins/megacity.menu/emblem.svg','eagle');
+  f.write('.local/share/drokk/profile.json',JSON.stringify(profile));
+  assert.equal(applySession(f.home,'brit-cit',f.settings).active,true);
+  assert.match(f.read('.config/example'),/font=brit/);
+  assert.equal(f.read('.config/omarchy/plugins/megacity.menu/emblem.svg'),'lion');
+  f.write('.config/example',f.read('.config/example')+'later=user\n');
+  applySession(f.home,'drokk',f.settings);
+  assert.match(f.read('.config/example'),/font=drokk/);
+  assert.equal(f.read('.config/omarchy/plugins/megacity.menu/emblem.svg'),'eagle');
+  applySession(f.home,'brit-cit',f.settings);
+  applySession(f.home,'dune',f.settings);
+  assert.equal(f.read('.config/example'),'font=original\nuser=keep\nlater=user\n');
+  assert.equal(f.read('.config/omarchy/plugins/megacity.menu/emblem.svg'),'eagle');
+  assert.equal(f.values['font-name'],"'My Font'");
+});
+
+test('Death, Brit-Cit and Drokk restore their own appearance before returning to stock', t => {
+  const f=fixture(t), profile=JSON.parse(f.read('.local/share/drokk/profile.json'));
+  profile.transparentBar=true; profile.barTransparent=false;
+  profile.variants=Object.fromEntries([['judge-death','death'],['brit-cit','brit']].map(([id,label])=>[id,{barTransparent:false,edits:[{path:'.config/example',before:'font=original\n',after:`font=${label}\n`}]}]));
+  f.write('.local/share/drokk/profile.json',JSON.stringify(profile));
+  for(const [id,label]of [['judge-death','death'],['brit-cit','brit'],['drokk','drokk'],['judge-death','death']]){
+    const result=applySession(f.home,id,f.settings);assert.equal(result.active,true);assert.deepEqual(result.preserved,[]);
+    assert.equal(f.read('.config/example'),`font=${label}\nuser=keep\n`);
+    assert.equal(JSON.parse(f.read('.config/omarchy/shell.json')).bar.transparent,false);
+  }
+  applySession(f.home,'dune',f.settings);
+  assert.equal(f.read('.config/example'),'font=original\nuser=keep\n');
+  assert.equal(f.values['font-name'],"'My Font'");
+  assert.equal('transparent' in JSON.parse(f.read('.config/omarchy/shell.json')).bar,false);
+});

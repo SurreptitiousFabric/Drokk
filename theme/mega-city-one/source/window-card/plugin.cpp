@@ -23,7 +23,7 @@
 
 namespace {
 HANDLE pluginHandle;
-CHyprSignalListener opened, released, reloaded;
+CHyprSignalListener opened, closed, moved, released, reloaded;
 SP<Config::Values::CBoolValue> enabled;
 bool tabButtonHeld = false;
 bool tabButtonReleased = false;
@@ -69,8 +69,14 @@ class WindowCard final : public IHyprWindowDecoration {
         else if (heading == "org.gnome.Nautilus") heading = "FILES";
         else std::transform(heading.begin(), heading.end(), heading.begin(), [](unsigned char c) { return c < 128 ? std::toupper(c) : c; });
         if (heading.empty()) heading = "WINDOW";
+        std::vector<Drokk::WorkspaceLabel> occupied;
+        for (const auto& candidate : Desktop::windowState()->windows())
+            if (candidate->m_isMapped && candidate->m_workspace)
+                occupied.push_back({candidate->m_workspace->m_id, candidate->m_workspace->m_name});
+        const auto space = Drokk::workspaceRow(owner->m_workspace ? owner->m_workspace->m_id : 0,
+            owner->m_workspace ? owner->m_workspace->m_name : "—", std::move(occupied));
         const std::array<std::string, 3> rows = {"TITLE   " + owner->m_title,
-            "SPACE   " + (owner->m_workspace ? owner->m_workspace->m_name : "—"), focused ? "STATUS  Active" : "STATUS  Inactive"};
+            space, focused ? "STATUS  Active" : "STATUS  Inactive"};
         const double scale = monitor->m_scale;
         if (!texture || lastHeading != heading || lastRows != rows || lastScale != scale) {
             lastHeading = heading;
@@ -164,6 +170,12 @@ class WindowCard final : public IHyprWindowDecoration {
     CBox box() const { const auto b = state.bounds(); return {b.x, b.y, b.width, b.height}; }
 };
 
+void damageCards() {
+    for (const auto& window : Desktop::windowState()->windows())
+        for (const auto& decoration : window->m_windowDecorations)
+            if (auto* card = dynamic_cast<WindowCard*>(decoration.get())) card->damageEntire();
+}
+
 void attach(PHLWINDOW window) {
     if (!enabled->value() || !window || !window->m_isMapped) return;
     for (const auto& decoration : window->m_windowDecorations)
@@ -199,7 +211,9 @@ APICALL EXPORT PLUGIN_DESCRIPTION_INFO PLUGIN_INIT(HANDLE handle) {
             if (auto* card = dynamic_cast<WindowCard*>(decoration.get())) { card->toggle(); break; }
         return 0;
     })) throw std::runtime_error("Drokk window card: could not register toggle action");
-    opened = Event::bus()->m_events.window.open.listen([](PHLWINDOW window) { attach(window); });
+    opened = Event::bus()->m_events.window.open.listen([](PHLWINDOW window) { attach(window); damageCards(); });
+    closed = Event::bus()->m_events.window.close.listen([](PHLWINDOW) { damageCards(); });
+    moved = Event::bus()->m_events.window.moveToWorkspace.listen([](PHLWINDOW, PHLWORKSPACE) { damageCards(); });
     reloaded = Event::bus()->m_events.config.reloaded.listen([] { applyEnabled(); });
     // Let Hyprland update held-button state before the decoration handles release.
     released = Event::bus()->m_events.input.mouse.button.listen([](IPointer::SButtonEvent event, Event::SCallbackInfo&) {
@@ -214,6 +228,8 @@ APICALL EXPORT PLUGIN_DESCRIPTION_INFO PLUGIN_INIT(HANDLE handle) {
 
 APICALL EXPORT void PLUGIN_EXIT() {
     opened.reset();
+    closed.reset();
+    moved.reset();
     released.reset();
     reloaded.reset();
     enabled.reset();

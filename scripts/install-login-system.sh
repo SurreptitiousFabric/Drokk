@@ -5,8 +5,14 @@ set -euo pipefail
 if (( EUID != 0 )); then echo 'Administrator privileges required' >&2; exit 1; fi
 source_theme=${1:?Expected absolute prepared SDDM theme path}
 case "$source_theme" in /*) ;; *) echo 'Source must be absolute' >&2; exit 1 ;; esac
-readonly target=/usr/share/sddm/themes/mega-city-one
-readonly selection=/etc/sddm.conf.d/99-mega-city-one.conf
+theme_slug=${2:-mega-city-one}
+case "$theme_slug" in mega-city-one|brit-cit|judge-death) ;; *) echo 'Unsupported login theme' >&2; exit 1 ;; esac
+readonly target="/usr/share/sddm/themes/$theme_slug"
+if [[ $theme_slug == mega-city-one ]]; then
+  readonly selection=/etc/sddm.conf.d/99-mega-city-one.conf
+else
+  readonly selection=/etc/sddm.conf.d/99-z-drokk-variant.conf
+fi
 if [[ -e $target || -L $target || -e $selection || -L $selection ]]; then
   echo 'Theme or selection already exists; refusing overwrite' >&2; exit 1
 fi
@@ -40,11 +46,11 @@ done
 mv -T -- "$stage" "$target"
 published=1
 selection_stage=$(mktemp /etc/sddm.conf.d/.mega-city-one.XXXXXX)
-printf '[Theme]\nCurrent=mega-city-one\n' > "$selection_stage"
+printf '[Theme]\nCurrent=%s\n' "$theme_slug" > "$selection_stage"
 chmod 644 "$selection_stage"
 # Hard link publishes without overwriting a file created since the preflight.
 ln -- "$selection_stage" "$selection"
 unlink "$selection_stage"
 selection_stage=''
 complete=1
-printf 'Installed and selected Mega-City One. SDDM was not restarted.\n'
+printf 'Installed and selected %s. SDDM was not restarted.\n' "$theme_slug"

@@ -1,0 +1,20 @@
+{
+  "artworkLicense": "CC0-1.0",
+  "assets": [
+    {
+      "file": "assets/emblem.source.svg",
+      "sha256": "ffbab1b5f72d365c106f40d2b7426cd8af834383eb69c45c840f3a13bb1eab2c",
+      "origin": "Preserved selected architectural lion C; extracted outer SVG and restored shared accent token."
+    },
+    {
+      "file": "assets/lock-emblem.png",
+      "sha256": "97675b04286bbfbbda60fc3affa9fdf5d09ece3f9cad00c193ab29b26808fe9f",
+      "origin": "Preserved Brit-Cit selected variant asset; copied byte-for-byte."
+    },
+    {
+      "file": "assets/login-reference.png",
+      "sha256": "0b0eea9a8972563dc74b6ab3f1ecb301088213184e6da7b2c2bb459a59a09edf",
+      "origin": "Preserved Brit-Cit selected variant asset; copied byte-for-byte."
+    }
+  ]
+}

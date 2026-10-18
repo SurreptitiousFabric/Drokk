@@ -1,0 +1,20 @@
+{
+  "artworkLicense": "CC0-1.0",
+  "assets": [
+    {
+      "file": "assets/emblem.source.svg",
+      "sha256": "d12a578eadd736e8a349457cd434cb57b92a1a03c6e27dd5543e08a8d690d190",
+      "origin": "Original insignia exploration A / Pterodactyl, SVG crop x24/y140/w510/h355 with background alpha extraction; no redraw."
+    },
+    {
+      "file": "assets/lock-emblem.png",
+      "sha256": "bef61cf4e48786927f17838621e6381f67fe0c9f2c26fa9ae6f6b6a8324fed62",
+      "origin": "Native librsvg rendering of the same selected crop at 510x355, without square viewport padding."
+    },
+    {
+      "file": "assets/login-reference.png",
+      "sha256": "18cda9fbaa750f74c0d36f8159143b5462f055df212060216a178419ca9170e9",
+      "origin": "Imagegen edit of the preceding login illustration using original pterodactyl A relief as reference; new sculpted artwork, not the flat production emblem."
+    }
+  ]
+}

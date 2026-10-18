@@ -53,10 +53,17 @@ export function applySession(home, theme, settings, enabled, shellLifecycle) {
   const profilePath = path.join(home, '.local/share/drokk/profile.json');
   const statePath = path.join(home, '.local/state/drokk/session.json');
   rejectSymlinks(profilePath); rejectSymlinks(statePath);
-  const profile = JSON.parse(fs.readFileSync(profilePath));
+  const baseProfile = JSON.parse(fs.readFileSync(profilePath));
+  const profileFor = slug => {
+    const overrides = baseProfile.variants?.[slug];
+    if (!overrides) return baseProfile;
+    const edits = baseProfile.edits.map(edit => overrides.edits.find(item => item.path === edit.path) ?? edit);
+    return { ...baseProfile, ...overrides, edits };
+  };
+  const profile = profileFor(theme);
   const previous = exists(statePath) ? JSON.parse(fs.readFileSync(statePath)) : { active: false };
   enabled ??= previous.enabled ?? true;
-  let active = enabled && ['drokk', 'mega-city-one'].includes(theme);
+  let active = enabled && (['drokk', 'mega-city-one'].includes(theme) || Object.hasOwn(baseProfile.variants ?? {}, theme));
   const changes = new Map(), preserved = [];
   if (active) for (const id of profile.companions ?? []) {
     if (![...widgetKinds, ...serviceKinds].some(kind => id === 'megacity.' + kind)) throw new Error('Invalid companion in profile');
@@ -80,21 +87,27 @@ export function applySession(home, theme, settings, enabled, shellLifecycle) {
   const config = JSON.parse(shell.before);
   const next = transitionShell(config, active);
   let transparentBefore = previous.transparentBefore;
-  if (profile.transparentBar && active !== previous.active && next.bar) {
-    if (active) { transparentBefore = next.bar.transparent ?? null; next.bar.transparent = true; }
-    else if (next.bar.transparent === true) {
+  if (profile.transparentBar && (active !== previous.active || (active && theme !== previous.theme)) && next.bar) {
+    if (active) {
+      if (!previous.active) transparentBefore = next.bar.transparent ?? null;
+      next.bar.transparent = profile.barTransparent ?? true;
+    }
+    else if (next.bar.transparent === (profileFor(previous.theme).barTransparent ?? true)) {
       if (transparentBefore === null) delete next.bar.transparent;
       else if (transparentBefore !== undefined) next.bar.transparent = transparentBefore;
     }
   }
   if (JSON.stringify(config) !== JSON.stringify(next)) shell.after = JSON.stringify(next, null, 2) + '\n';
   const settingChanges = [], settingsBefore = active && !previous.active ? {} : previous.settingsBefore ?? {};
-  if (active !== previous.active) {
-    for (const edit of profile.edits) {
+  const variantChanged = active && previous.active && theme !== previous.theme;
+  const editPasses = variantChanged ? [[profileFor(previous.theme), false], [profile, true]]
+    : active !== previous.active ? [[active ? profile : profileFor(previous.theme), active]] : [];
+  for (const [editingProfile, applying] of editPasses) {
+    for (const edit of editingProfile.edits) {
       const item = read(edit.path);
       try {
-        item.after = transitionText(item.after ?? '', edit, active);
-        if (!active && edit.beforeAbsent && item.after === '') item.after = null;
+        item.after = transitionText(item.after ?? '', edit, applying);
+        if (!applying && edit.beforeAbsent && item.after === '') item.after = null;
       } catch (error) { preserved.push(error.message); }
     }
   }

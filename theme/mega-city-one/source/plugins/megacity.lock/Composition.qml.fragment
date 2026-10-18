@@ -22,7 +22,7 @@
       }
       Image {
         anchors.horizontalCenter: parent.horizontalCenter; y: 165
-        width: 156; height: 110; source: "lock-emblem.png"; smooth: false; fillMode: Image.PreserveAspectFit
+        width: 156; height: 110; source: "lock-emblem.svg"; smooth: false; fillMode: Image.PreserveAspectFit
       }
       Text {
         width: parent.width; y: 292

@@ -48,8 +48,37 @@ export function createSessionProfile(home, theme, original = {}, installedTheme 
   add(fontconfig, read(fontconfig) ?? '', shellFontConfig(typography), { wholeFile: true, beforeAbsent: read(fontconfig) === null });
   const yazi = '.config/yazi/theme.toml';
   add(yazi, read(yazi) ?? '', fs.readFileSync(path.join(theme, 'yazi-theme.toml'), 'utf8'), { wholeFile: true, beforeAbsent: read(yazi) === null });
-  return { companions: ['menu', 'workspaces', 'audio', 'network', 'bluetooth', 'power', 'lock', 'notifications'].map(k => 'megacity.' + k), transparentBar: true, edits, settings: {
+  return { companions: ['menu', 'workspaces', 'audio', 'network', 'bluetooth', 'power', 'lock', 'notifications'].map(k => 'megacity.' + k), transparentBar: true, barTransparent: false, edits, settings: {
     'icon-theme': "'Mega-City-One'", 'cursor-theme': "'Mega-City-One-Cursor'", 'cursor-size': '24',
     'font-name': `'${typography.roles.interface.family} ${typography.sizes.interfacePx * 0.75}'`,
   } };
+}
+
+export function withVariantProfile(profile, basePackage, variantPackage) {
+  const id = JSON.parse(fs.readFileSync(path.join(variantPackage, 'manifest.json'))).name;
+  if (!['brit-cit', 'judge-death'].includes(id)) throw new Error('Unsupported profile variant');
+  const next = structuredClone(profile);
+  const overrides = [];
+  for (const edit of next.edits) {
+    if (/^\.config\/gtk-[34]\.0\/gtk\.css$/.test(edit.path)) {
+      overrides.push({ ...edit, after: edit.after.replace('/themes/drokk/', '/themes/' + id + '/') });
+    } else if (edit.path === '.config/yazi/theme.toml') {
+      overrides.push({ ...edit, after: fs.readFileSync(path.join(variantPackage, 'theme/yazi-theme.toml'), 'utf8') });
+    }
+  }
+  for (const [destination, source] of [
+    ['megacity.menu/emblem.svg', 'plugins/megacity.menu/emblem.svg'],
+    ['megacity.menu/BarWidget.qml', 'plugins/megacity.menu/BarWidget.qml'],
+    ['megacity.workspaces/BarWidget.qml', 'plugins/megacity.workspaces/BarWidget.qml'],
+    ['megacity.lock/lock-emblem.svg', 'plugins/megacity.lock/lock-emblem.svg'],
+  ]) {
+    const relative = '.config/omarchy/plugins/' + destination;
+    const baseline = fs.readFileSync(path.join(basePackage, source), 'utf8');
+    const existing = next.edits.find(edit => edit.path === relative);
+    if (existing && (existing.after !== baseline || !existing.wholeFile)) throw new Error('Variant asset registration changed: ' + relative);
+    if (!existing) next.edits.push({ path: relative, before: baseline, after: baseline, wholeFile: true });
+    overrides.push({ path: relative, before: existing?.before ?? baseline, after: fs.readFileSync(path.join(variantPackage, source), 'utf8'), wholeFile: true });
+  }
+  next.variants = { ...next.variants, [id]: { edits: overrides, barTransparent: false } };
+  return next;
 }

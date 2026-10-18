@@ -70,3 +70,14 @@ points saved for guard activation. These are small owned recovery records, not
 whole-theme backups. Do not restore them blindly over later user changes.
 
 SDDM has a separate [installation and recovery boundary](authentication-screens.md).
+
+## Brit-Cit
+
+The installed session profile now explicitly supports Brit-Cit. Variant overrides
+exchange the bar/lock emblems, GTK imports and Yazi colours through the existing
+owned-file transaction. Switching to Drokk restores the eagle; switching to a stock
+theme restores stock components. Shared fonts, controls and card behaviour remain.
+Lock SVGs embed each exact PNG without tracing or changing its pixels. Initial
+registration can be prepared with `withVariantProfile` in session-profile.mjs;
+it is not yet a public installer command. Login selection is separate and privileged;
+see [authentication screens](authentication-screens.md).

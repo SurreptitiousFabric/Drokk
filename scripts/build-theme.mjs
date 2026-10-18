@@ -15,7 +15,7 @@ import { menuPluginFiles } from './menu-plugin.mjs';
 export const sourceDirectory = path.resolve(import.meta.dirname, '../theme/mega-city-one/source');
 export const hash = bytes => createHash('sha256').update(bytes).digest('hex');
 
-function resolveModel(source) {
+export function resolveModel(source) {
   const model = JSON.parse(fs.readFileSync(path.join(source, 'palette.json')));
   const schema = JSON.parse(fs.readFileSync(path.join(source, 'tokens.json')));
   for (const [group, label] of [['colors', 'colour'], ['alpha', 'alpha']]) {
@@ -38,12 +38,14 @@ function resolveModel(source) {
   return { colors, alpha: model.alpha };
 }
 
-export function buildTheme(source, out) {
+export function buildTheme(source, out, themeName = 'mega-city-one') {
+  if (!['mega-city-one', 'brit-cit', 'judge-death'].includes(themeName)) throw new Error('Unsupported theme identity');
   source = path.resolve(source);
   out = path.resolve(out);
   if (out === source || out.startsWith(source + path.sep) || source.startsWith(out + path.sep)) {
     throw new Error('Build output must not overlap the source directory');
   }
+  const displayName = { 'mega-city-one': 'Mega-City One', 'brit-cit': 'Brit-Cit', 'judge-death': 'Judge Death' }[themeName];
   const model = resolveModel(source);
   const files = new Map();
   const add = (name, value) => files.set(name, Buffer.isBuffer(value) ? value : Buffer.from(value));
@@ -83,11 +85,11 @@ export function buildTheme(source, out) {
   add('plugins/megacity.notifications/manifest.json', fs.readFileSync(path.join(source, 'plugins/megacity.notifications/manifest.json')));
   for (const [name, value] of Object.entries(notificationPlugin(source, model, typography))) add('plugins/megacity.notifications/' + name, value);
   for (const [name, value] of Object.entries(menuPluginFiles(source))) add('plugins/megacity.menu/' + name, value);
-  for (const name of packageFiles(path.join(source, 'sddm'))) add('sddm/mega-city-one/' + name, renderTemplate(fs.readFileSync(path.join(source, 'sddm', name), 'utf8'), model, typography));
-  add('sddm/mega-city-one/background.png', fs.readFileSync(path.join(source, 'assets/login-reference.png')));
-  add('sddm/mega-city-one/emblem.svg', files.get('theme/assets/emblem.svg'));
+  for (const name of packageFiles(path.join(source, 'sddm'))) add('sddm/' + themeName + '/' + name, renderTemplate(fs.readFileSync(path.join(source, 'sddm', name), 'utf8'), model, typography));
+  add('sddm/' + themeName + '/background.png', fs.readFileSync(path.join(source, 'assets/login-reference.png')));
+  add('sddm/' + themeName + '/emblem.svg', files.get('theme/assets/emblem.svg'));
   for (const name of ['PlexSans-Variable.ttf', 'ShureTechMonoNerdFontMono-Regular.ttf', 'PlexSans-OFL.txt', 'ShureTechMono-OFL.txt']) {
-    if (fs.existsSync(path.join(source, 'fonts', name))) add('sddm/mega-city-one/fonts/' + name, fs.readFileSync(path.join(source, 'fonts', name)));
+    if (fs.existsSync(path.join(source, 'fonts', name))) add('sddm/' + themeName + '/fonts/' + name, fs.readFileSync(path.join(source, 'fonts', name)));
   }
   for (const [name, value] of Object.entries(lockPluginFiles(source))) add('plugins/megacity.lock/' + name, value);
   for (const [name, value] of Object.entries(desktopAssets(model, files.get('theme/assets/folder.svg'), JSON.parse(fs.readFileSync(path.join(source, 'assets/symbols.json')))))) add('theme/' + name, value);
@@ -96,7 +98,7 @@ export function buildTheme(source, out) {
   add('theme/backgrounds/mega-city-one.png', fs.readFileSync(path.join(source, 'assets/wallpaper.png')));
   for (const name of packageFiles(path.join(source, 'assets/backgrounds'))) add('theme/backgrounds/' + name, fs.readFileSync(path.join(source, 'assets/backgrounds', name)));
   add('preview/model.json', JSON.stringify(model, null, 2) + '\n');
-  for (const [name, value] of Object.entries(applicationTheme(model, typography))) add('theme/' + name, value);
+  for (const [name, value] of Object.entries(applicationTheme(model, typography, displayName))) add('theme/' + name, value);
   const effects = JSON.parse(fs.readFileSync(path.join(source, 'effects.json')));
   if (!Number.isInteger(effects.backdropBlurPx) || effects.backdropBlurPx < 0 || effects.backdropBlurPx > 64) throw new Error('Invalid backdrop blur size');
   if (!Number.isFinite(effects.borderPulseSpeed) || effects.borderPulseSpeed <= 0 || effects.borderPulseSpeed > 100) throw new Error('Invalid border pulse speed');
@@ -106,7 +108,7 @@ export function buildTheme(source, out) {
   for (const name of packageFiles(path.join(source, 'fonts'))) {
     add('theme/fonts/' + name, fs.readFileSync(path.join(source, 'fonts', name)));
   }
-  add('preview/index.html', previewTheme(model, typography));
+  add('preview/index.html', previewTheme(model, typography, displayName));
   const coverage = {};
   for (const id of [...Object.keys(model.colors), ...Object.keys(model.alpha)]) {
     coverage[id] = id.startsWith('shell.') ? 'native shell configuration; runtime unverified'
@@ -123,7 +125,7 @@ export function buildTheme(source, out) {
   add('preview/coverage.json', JSON.stringify(coverage, null, 2) + '\n');
   const manifest = {
     schemaVersion: 1,
-    name: 'mega-city-one',
+    name: themeName,
     scope: 'Native palette/shell, terminal, Hyprland, btop and Neovim configuration; full desktop and authentication acceptance pending',
     dependencies: [{ package: 'gsfonts', purpose: 'Nimbus Sans Narrow panel faces; not bundled' }, { package: 'aether.nvim', purpose: 'Omarchy Neovim theme integration, v3 API; not bundled' }],
     files: [...files].sort(([a], [b]) => a.localeCompare(b)).map(([name, value]) => ({ path: name, sha256: hash(value), bytes: value.length })),
@@ -165,10 +167,10 @@ export function checkPackage(root) {
   if (fs.lstatSync(root).isSymbolicLink()) throw new Error('Package root cannot be a symlink');
   const actual = packageFiles(root);
   const manifest = JSON.parse(fs.readFileSync(path.join(root, 'manifest.json')));
-  if (manifest.schemaVersion !== 1 || manifest.name !== 'mega-city-one' || !Array.isArray(manifest.files)) throw new Error('Not a Mega-City One package');
+  if (manifest.schemaVersion !== 1 || !['mega-city-one', 'brit-cit', 'judge-death'].includes(manifest.name) || !Array.isArray(manifest.files)) throw new Error('Not a Mega-City One package');
   const expected = new Set(['manifest.json']);
   for (const file of manifest.files) {
-    if (typeof file.path !== 'string' || !/^(theme\/|preview\/|sddm\/mega-city-one\/|plugins\/megacity\.(menu|notifications|launcher|lock|workspaces|audio|network|bluetooth|power)\/)/.test(file.path) || file.path.split('/').some(part => part === '..' || !part) || file.path.includes('\\')) throw new Error('Unsafe package path');
+    if (typeof file.path !== 'string' || !/^(theme\/|preview\/|sddm\/(?:mega-city-one|brit-cit|judge-death)\/|plugins\/megacity\.(menu|notifications|launcher|lock|workspaces|audio|network|bluetooth|power)\/)/.test(file.path) || file.path.split('/').some(part => part === '..' || !part) || file.path.includes('\\')) throw new Error('Unsafe package path');
     if (expected.has(file.path)) throw new Error('Duplicate package path');
     expected.add(file.path);
     const bytes = fs.readFileSync(path.join(root, file.path));

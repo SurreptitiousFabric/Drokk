@@ -127,3 +127,16 @@ hidden grouped windows. `theme:check-card-hyprpm` adds the real manager sandbox
 checks described above. Its temporary compositor and applications close
 on completion or failure. It does not exercise real authentication or claim
 other-machine compatibility. Current execution evidence is in the build log.
+
+## Workspace row
+
+The card uses `SPACE 4 (1, 2, 3)`: its window's workspace first, then other occupied
+normal workspaces in numeric order. Empty and special/scratchpad workspaces are
+omitted; duplicate windows on one workspace produce one entry. With no others,
+show only `SPACE 4`. Named normal workspaces retain their names. Window open,
+close and workspace-move events invalidate the card; no polling process is added.
+Long rows retain the existing text ellipsis within the card's fixed width.
+
+To match Omarchy's Super+0 shortcut, numeric workspace 10 is displayed as `0`,
+both as owner and in brackets. Its real ID and ordering stay unchanged; custom
+workspace names are preserved.

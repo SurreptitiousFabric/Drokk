@@ -35,6 +35,8 @@ export function lockPluginFiles(source) {
   result['LockView.qml'] = view.replace(anchor, composition + '\n' + anchor);
   result['manifest.json'] = fs.readFileSync(path.join(source, 'plugins/megacity.lock/manifest.json'));
   result['lock-emblem.png'] = fs.readFileSync(path.join(source, 'assets/lock-emblem.png'));
+  const width = result['lock-emblem.png'].readUInt32BE(16), height = result['lock-emblem.png'].readUInt32BE(20);
+  result['lock-emblem.svg'] = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${width} ${height}"><image width="${width}" height="${height}" href="data:image/png;base64,` + result['lock-emblem.png'].toString('base64') + '"/></svg>';
   result['LICENSE'] = fs.readFileSync(path.join(directory, 'LICENSE'));
   result['upstream.json'] = JSON.stringify(provenance, null, 2) + '\n';
   return serviceCompatibility(source, 'lock', provenance, result);

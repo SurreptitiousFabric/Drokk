@@ -1,0 +1,32 @@
+{
+  "id": "judge-death",
+  "name": "Judge Death",
+  "kind": "Dark Judge edition",
+  "emblem": "selected:death-pterodactyl",
+  "art": null,
+  "colors": {
+    "background": "#101710",
+    "dark_background": "#0D120E",
+    "darker_background": "#070B08",
+    "lighter_background": "#283028",
+    "foreground": "#E0DCCB",
+    "light_foreground": "#BFC7B7",
+    "accent": "#A7BA74",
+    "blue": "#7D9280",
+    "green": "#A5BC80",
+    "red": "#C96168",
+    "art.folder": "$blue"
+  },
+  "selectedAuthentication": {
+    "option": "A",
+    "name": "Pterodactyl",
+    "lockSource": "selected:death-pterodactyl",
+    "loginArtwork": "login-reference.png"
+  },
+  "loginPanelY": 350,
+  "selectedDesign": {
+    "option": "A",
+    "name": "Pterodactyl",
+    "study": "original insignia exploration"
+  }
+}

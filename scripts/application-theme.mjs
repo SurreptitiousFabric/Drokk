@@ -1,6 +1,6 @@
 const rgb = hex => hex.slice(1).match(/../g).map(part => Number.parseInt(part, 16));
 
-export function applicationTheme(model, typography) {
+export function applicationTheme(model, typography, name = 'Mega-City One') {
   const c = model.colors, font = typography.roles.interface.family, size = typography.sizes.interfacePx;
   const gtk = `/* Generated local application styling; retain native widget structure. */
 @define-color theme_bg_color ${c['gtk.background']};
@@ -116,7 +116,7 @@ rules = [
   { mime = "application/*zip*", fg = "${c.orange}" },
 ]
 `;
-  const browser = { manifest_version: 3, name: 'Mega-City One', version: '0.1.0',
+  const browser = { manifest_version: 3, name, version: '0.1.0',
     description: 'Shared navy, cream and gold browser chrome. No page styling or permissions.',
     theme: { colors: {
       frame: rgb(c.background), frame_inactive: rgb(c.dark_background),

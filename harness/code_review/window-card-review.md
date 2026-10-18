@@ -104,3 +104,14 @@ arbitrary third-party decoration combinations are not established.
 All remaining checklist categories were checked without an actionable finding
 within this scope; this is not a security certification or repository-wide review.
 The build log owns final command outcomes and target-machine evidence.
+
+### 2026-10-18 — occupied workspace row
+
+Reviewed the narrow workspace-row formatter, mapped-window adapter, event-driven
+damage callbacks, listener cleanup and visual fixture. No actionable AI-slop
+findings. Reused existing draw/texture comparison and owned native build/install
+paths. No polling, compositor hook or parallel metadata service. Formatter tests
+cover owner exclusion, sorting, duplicate removal, special workspaces, named normal
+workspaces and changed occupancy. Isolated native OCR verifies actual rendered
+row and removal when its last window leaves; existing input/lifecycle checks pass.
+Final live scoped capture matches compositor metadata: SPACE 1 (2, 3, 4).

@@ -1,6 +1,26 @@
 #pragma once
+#include <algorithm>
+#include <cstdint>
+#include <string>
+#include <vector>
 
 namespace Drokk {
+
+struct WorkspaceLabel { int64_t id; std::string name; };
+inline std::string workspaceLabel(int64_t id, const std::string& name) {
+    return id == 10 && name == "10" ? "0" : name;
+}
+inline std::string workspaceRow(int64_t currentId, const std::string& current, std::vector<WorkspaceLabel> occupied) {
+    std::sort(occupied.begin(), occupied.end(), [](const auto& a, const auto& b) { return a.id < b.id; });
+    occupied.erase(std::unique(occupied.begin(), occupied.end(), [](const auto& a, const auto& b) { return a.id == b.id; }), occupied.end());
+    std::string others;
+    for (const auto& workspace : occupied) {
+        if (workspace.id <= 0 || workspace.id == currentId) continue;
+        if (!others.empty()) others += ", ";
+        others += workspaceLabel(workspace.id, workspace.name);
+    }
+    return "SPACE   " + workspaceLabel(currentId, current) + (others.empty() ? "" : " (" + others + ")");
+}
 
 struct CardBox { double x, y, width, height; };
 
