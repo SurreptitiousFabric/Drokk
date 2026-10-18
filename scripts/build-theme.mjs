@@ -39,13 +39,13 @@ export function resolveModel(source) {
 }
 
 export function buildTheme(source, out, themeName = 'mega-city-one') {
-  if (!['mega-city-one', 'brit-cit', 'judge-death'].includes(themeName)) throw new Error('Unsupported theme identity');
+  if (!['mega-city-one', 'brit-cit', 'judge-death', 'east-meg'].includes(themeName)) throw new Error('Unsupported theme identity');
   source = path.resolve(source);
   out = path.resolve(out);
   if (out === source || out.startsWith(source + path.sep) || source.startsWith(out + path.sep)) {
     throw new Error('Build output must not overlap the source directory');
   }
-  const displayName = { 'mega-city-one': 'Mega-City One', 'brit-cit': 'Brit-Cit', 'judge-death': 'Judge Death' }[themeName];
+  const displayName = { 'mega-city-one': 'Mega-City One', 'brit-cit': 'Brit-Cit', 'judge-death': 'Judge Death', 'east-meg': 'East-Meg / Sov' }[themeName];
   const model = resolveModel(source);
   const files = new Map();
   const add = (name, value) => files.set(name, Buffer.isBuffer(value) ? value : Buffer.from(value));
@@ -167,10 +167,10 @@ export function checkPackage(root) {
   if (fs.lstatSync(root).isSymbolicLink()) throw new Error('Package root cannot be a symlink');
   const actual = packageFiles(root);
   const manifest = JSON.parse(fs.readFileSync(path.join(root, 'manifest.json')));
-  if (manifest.schemaVersion !== 1 || !['mega-city-one', 'brit-cit', 'judge-death'].includes(manifest.name) || !Array.isArray(manifest.files)) throw new Error('Not a Mega-City One package');
+  if (manifest.schemaVersion !== 1 || !['mega-city-one', 'brit-cit', 'judge-death', 'east-meg'].includes(manifest.name) || !Array.isArray(manifest.files)) throw new Error('Not a Mega-City One package');
   const expected = new Set(['manifest.json']);
   for (const file of manifest.files) {
-    if (typeof file.path !== 'string' || !/^(theme\/|preview\/|sddm\/(?:mega-city-one|brit-cit|judge-death)\/|plugins\/megacity\.(menu|notifications|launcher|lock|workspaces|audio|network|bluetooth|power)\/)/.test(file.path) || file.path.split('/').some(part => part === '..' || !part) || file.path.includes('\\')) throw new Error('Unsafe package path');
+    if (typeof file.path !== 'string' || !/^(theme\/|preview\/|sddm\/(?:mega-city-one|brit-cit|judge-death|east-meg)\/|plugins\/megacity\.(menu|notifications|launcher|lock|workspaces|audio|network|bluetooth|power)\/)/.test(file.path) || file.path.split('/').some(part => part === '..' || !part) || file.path.includes('\\')) throw new Error('Unsafe package path');
     if (expected.has(file.path)) throw new Error('Duplicate package path');
     expected.add(file.path);
     const bytes = fs.readFileSync(path.join(root, file.path));

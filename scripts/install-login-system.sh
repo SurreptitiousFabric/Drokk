@@ -6,7 +6,7 @@ if (( EUID != 0 )); then echo 'Administrator privileges required' >&2; exit 1; f
 source_theme=${1:?Expected absolute prepared SDDM theme path}
 case "$source_theme" in /*) ;; *) echo 'Source must be absolute' >&2; exit 1 ;; esac
 theme_slug=${2:-mega-city-one}
-case "$theme_slug" in mega-city-one|brit-cit|judge-death) ;; *) echo 'Unsupported login theme' >&2; exit 1 ;; esac
+case "$theme_slug" in mega-city-one|brit-cit|judge-death|east-meg) ;; *) echo 'Unsupported login theme' >&2; exit 1 ;; esac
 readonly target="/usr/share/sddm/themes/$theme_slug"
 if [[ $theme_slug == mega-city-one ]]; then
   readonly selection=/etc/sddm.conf.d/99-mega-city-one.conf

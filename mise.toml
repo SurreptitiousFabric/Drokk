@@ -86,3 +86,7 @@ run = "node scripts/build-variant.mjs"
 [tasks."theme:build-death"]
 description = "Build Judge Death from selected artwork and the shared implementation"
 run = "node scripts/build-variant.mjs judge-death"
+
+[tasks."theme:build-sov"]
+description = "Build East-Meg / Sov using selected artwork and the shared implementation"
+run = "node scripts/build-variant.mjs east-meg"

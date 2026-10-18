@@ -1031,3 +1031,13 @@ checked, no broken links. Staged scan: no valid known credential patterns, forbi
 output/evidence paths, symlinks or oversized files. Root README remains 115 words.
 Removed one extra trailing blank line in the new Brit-Cit README. Publication is
 source-only; existing public installation and cross-hardware limitations remain.
+
+### 2026-10-18 — East-Meg / Sov variant
+
+User requested switching to Sov. Added canonical preserved classic A assets, olive/brass/red palette and shared package identity/profile/SDDM support. Existing selected login image copied unchanged; flat lock SVG rendered by librsvg without redraw. Package RED failed as unsupported variant; GREEN passed exact-art and colour-propagation checks. All 55 serial tests passed. Native login form: 3 passed; lock view submit/clear and disabled guard passed. Both native presentations inspected. Bounded AI-slop review found no actionable issues.
+
+Installed user-owned east-meg theme, registered companion profile, switched through normal Omarchy command while retaining wallpaper. State active=true/theme=east-meg; installed menu and lock SVGs match package bytes. Hyprland configerrors empty. Login selection outcome recorded below; real authentication remains user acceptance. No commit or push performed.
+
+SDDM installation did not execute: pkexec returned 126, Request dismissed. Existing
+judge-death selection was preserved. Sov login package is checked and prepared,
+but is not installed/selected; desktop and lock are active Sov.

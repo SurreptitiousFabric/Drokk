@@ -56,7 +56,7 @@ export function createSessionProfile(home, theme, original = {}, installedTheme 
 
 export function withVariantProfile(profile, basePackage, variantPackage) {
   const id = JSON.parse(fs.readFileSync(path.join(variantPackage, 'manifest.json'))).name;
-  if (!['brit-cit', 'judge-death'].includes(id)) throw new Error('Unsupported profile variant');
+  if (!['brit-cit', 'judge-death', 'east-meg'].includes(id)) throw new Error('Unsupported profile variant');
   const next = structuredClone(profile);
   const overrides = [];
   for (const edit of next.edits) {

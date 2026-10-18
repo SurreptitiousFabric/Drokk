@@ -105,3 +105,7 @@ The user authorised [Phase 10: Judge Death](harness/build/phase-10-judge-death.m
 on 2026-10-18, after applying the accepted Brit-Cit bar settings to Mega-City One.
 Use selected option A and shared implementation. Keep Brit-Cit live while preparing
 Death; do not infer a greeter selection change from preparation alone.
+
+## East-Meg extension
+
+User authorised [Phase 11: East-Meg / Sov](harness/build/phase-11-east-meg.md) and live switching on 2026-10-18. This extends the preserved-variant exclusion for Sov.

@@ -1,0 +1,20 @@
+{
+  "artworkLicense": "CC0-1.0",
+  "assets": [
+    {
+      "file": "assets/emblem.source.svg",
+      "sha256": "818bb3780e239f938257e8e0e4ae60269dd4a434e5c0919e4821373e2f757a5a",
+      "origin": "Preserved selected Sov classic A artwork; SVG rendered by librsvg for lock use, no redraw."
+    },
+    {
+      "file": "assets/lock-emblem.png",
+      "sha256": "a38f0c642d87dcca1955b1dfced95cecfc988cd683a8799312f9ab81e9e27d69",
+      "origin": "Preserved selected Sov classic A artwork; SVG rendered by librsvg for lock use, no redraw."
+    },
+    {
+      "file": "assets/login-reference.png",
+      "sha256": "2edf2d93afbeb7f3bef4b6058f9dfd88d01c8cd2ea3f8e37648750fdaeb09602",
+      "origin": "Preserved selected Sov classic A artwork; SVG rendered by librsvg for lock use, no redraw."
+    }
+  ]
+}

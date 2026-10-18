@@ -11,7 +11,7 @@ export function buildVariant(source, out) {
     if (out === input || out.startsWith(input + path.sep) || input.startsWith(out + path.sep)) throw new Error('Variant output must not overlap source');
   }
   const variant = JSON.parse(fs.readFileSync(path.join(source, 'variant.json')));
-  if (!['brit-cit', 'judge-death'].includes(variant.id)) throw new Error('Unsupported variant');
+  if (!['brit-cit', 'judge-death', 'east-meg'].includes(variant.id)) throw new Error('Unsupported variant');
   const temporary = fs.mkdtempSync(path.join(os.tmpdir(), 'drokk-source-'));
   try {
     const merged = path.join(temporary, 'source');
@@ -41,7 +41,7 @@ export function buildVariant(source, out) {
     const mainPath = path.join(merged, 'sddm/Main.qml');
     let main = fs.readFileSync(mainPath, 'utf8');
     if (!main.includes('id: form; x: 641; y: 273')) throw new Error('Shared login geometry changed');
-    main = main.replace('id: form; x: 641; y: 273', variant.id === 'judge-death' ? 'id: form; x: 416; y: 605' : 'id: form; x: 666; y: 303; scale: 0.87; transformOrigin: Item.TopLeft');
+    main = main.replace('id: form; x: 641; y: 273', variant.id === 'judge-death' ? 'id: form; x: 416; y: 605' : variant.id === 'east-meg' ? 'id: form; x: 641; y: 273' : 'id: form; x: 666; y: 303; scale: 0.87; transformOrigin: Item.TopLeft');
     fs.writeFileSync(mainPath, main);
     const formPath = path.join(merged, 'sddm/LoginForm.qml');
     let form = fs.readFileSync(formPath, 'utf8');
@@ -76,7 +76,7 @@ export function buildVariant(source, out) {
 if (process.argv[1] && import.meta.url === pathToFileURL(path.resolve(process.argv[1])).href) {
   try {
     const id = process.argv[2] ?? 'brit-cit';
-    if (!['brit-cit', 'judge-death'].includes(id)) throw new Error('Unsupported variant');
+    if (!['brit-cit', 'judge-death', 'east-meg'].includes(id)) throw new Error('Unsupported variant');
     const manifest = buildVariant(path.resolve('theme/' + id + '/source'), path.resolve('dist/' + id));
     console.log(`build: ${manifest.name}, ${manifest.files.length} files`);
   } catch (error) { console.error(error.message); process.exitCode = 1; }

@@ -1,0 +1,37 @@
+{
+  "id": "east-meg",
+  "name": "East-Meg / Sov",
+  "kind": "City theme",
+  "emblem": "selected:sov-classic",
+  "art": 1,
+  "colors": {
+    "background": "#171C1A",
+    "dark_background": "#141A17",
+    "darker_background": "#0C100E",
+    "lighter_background": "#282F29",
+    "accent": "#C6B88C",
+    "blue": "#849581",
+    "green": "#B1CB91",
+    "red": "#C84B51",
+    "art.folder": "$blue",
+    "workspace.active": "$red",
+    "workspace.activeText": "#FFFFFF",
+    "hyprland_active_border": "$red",
+    "shell.menu.selected-background": "$red",
+    "shell.menu.selected-text": "#FFFFFF",
+    "shell.menu.selected-border": "$accent"
+  },
+  "selectedDesign": {
+    "option": "A",
+    "name": "Classic"
+  },
+  "loginPanelY": 266,
+  "alpha": {
+    "shell.bar.background-alpha": 0.9
+  },
+  "shell": {
+    "bar": {
+      "icon-font": 15
+    }
+  }
+}

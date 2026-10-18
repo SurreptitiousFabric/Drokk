@@ -50,3 +50,22 @@ test('Judge Death builds selected pterodactyl artwork, bone/green palette and a 
   buildVariant(source, out);
   assert.match(read('theme/colors.toml').toString(), /selection_background = "#115577"/);
 });
+
+test('Sov builds classic A art and olive/red colours through the shared package', t => {
+  const root = fs.mkdtempSync(path.join(os.tmpdir(), 'drokk-sov-'));
+  t.after(() => fs.rmSync(root, { recursive: true, force: true }));
+  const source = path.join(root, 'source'), out = path.join(root, 'package');
+  fs.cpSync('theme/east-meg/source', source, { recursive: true });
+  buildVariant(source, out);
+  assert.equal(checkPackage(out).name, 'east-meg');
+  const read = p => fs.readFileSync(path.join(out, p));
+  assert.match(read('theme/colors.toml').toString(), /background = "#171C1A"/);
+  assert.match(read('theme/colors.toml').toString(), /hyprland_active_border = "#C84B51"/);
+  assert.deepEqual(read('plugins/megacity.lock/lock-emblem.png'), fs.readFileSync(path.join(source, 'assets/lock-emblem.png')));
+  assert.deepEqual(read('sddm/east-meg/background.png'), fs.readFileSync(path.join(source, 'assets/login-reference.png')));
+  const config = JSON.parse(fs.readFileSync(path.join(source, 'variant.json')));
+  config.colors.red = '#AA3344';
+  fs.writeFileSync(path.join(source, 'variant.json'), JSON.stringify(config));
+  buildVariant(source, out);
+  assert.match(read('theme/colors.toml').toString(), /hyprland_active_border = "#AA3344"/);
+});

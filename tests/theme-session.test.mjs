@@ -202,12 +202,12 @@ test('Brit-Cit and Drokk exchange owned appearance and emblem files, then restor
   assert.equal(f.values['font-name'],"'My Font'");
 });
 
-test('Death, Brit-Cit and Drokk restore their own appearance before returning to stock', t => {
+test('Death, Sov, Brit-Cit and Drokk restore their own appearance before returning to stock', t => {
   const f=fixture(t), profile=JSON.parse(f.read('.local/share/drokk/profile.json'));
   profile.transparentBar=true; profile.barTransparent=false;
-  profile.variants=Object.fromEntries([['judge-death','death'],['brit-cit','brit']].map(([id,label])=>[id,{barTransparent:false,edits:[{path:'.config/example',before:'font=original\n',after:`font=${label}\n`}]}]));
+  profile.variants=Object.fromEntries([['judge-death','death'],['brit-cit','brit'],['east-meg','sov']].map(([id,label])=>[id,{barTransparent:false,edits:[{path:'.config/example',before:'font=original\n',after:`font=${label}\n`}]}]));
   f.write('.local/share/drokk/profile.json',JSON.stringify(profile));
-  for(const [id,label]of [['judge-death','death'],['brit-cit','brit'],['drokk','drokk'],['judge-death','death']]){
+  for(const [id,label]of [['judge-death','death'],['east-meg','sov'],['brit-cit','brit'],['drokk','drokk'],['east-meg','sov']]){
     const result=applySession(f.home,id,f.settings);assert.equal(result.active,true);assert.deepEqual(result.preserved,[]);
     assert.equal(f.read('.config/example'),`font=${label}\nuser=keep\n`);
     assert.equal(JSON.parse(f.read('.config/omarchy/shell.json')).bar.transparent,false);
