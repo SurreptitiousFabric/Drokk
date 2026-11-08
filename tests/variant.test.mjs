@@ -40,6 +40,9 @@ test('Judge Death builds selected pterodactyl artwork, bone/green palette and a 
   const read = p => fs.readFileSync(path.join(out, p));
   assert.match(read('theme/colors.toml').toString(), /background = "#101710"/);
   assert.match(read('theme/colors.toml').toString(), /foreground = "#E0DCCB"/);
+  assert.match(read('theme/shell.toml').toString(), /clock-color = "#E0DCCB"/);
+  assert.match(read('theme/shell.toml').toString(), /date-color = "#E0DCCB"/);
+  assert.match(read('theme/shell.toml').toString(), /clock-scrim-alpha = 0.65/);
   assert.match(read('theme/shell.toml').toString(), /icon-font = 15/);
   assert.deepEqual(read('plugins/megacity.lock/lock-emblem.png'), fs.readFileSync(path.join(source, 'assets/lock-emblem.png')));
   assert.deepEqual(read('sddm/judge-death/background.png'), fs.readFileSync(path.join(source, 'assets/login-reference.png')));
@@ -68,4 +71,24 @@ test('Sov builds classic A art and olive/red colours through the shared package'
   fs.writeFileSync(path.join(source, 'variant.json'), JSON.stringify(config));
   buildVariant(source, out);
   assert.match(read('theme/colors.toml').toString(), /hyprland_active_border = "#AA3344"/);
+});
+
+test('Anderson builds selected Psi A artwork with inherited colours and a Psi Division login', t => {
+  const root = fs.mkdtempSync(path.join(os.tmpdir(), 'drokk-psi-'));
+  t.after(() => fs.rmSync(root, { recursive: true, force: true }));
+  const source = path.join(root, 'source'), out = path.join(root, 'package');
+  fs.cpSync('theme/anderson/source', source, { recursive: true });
+  buildVariant(source, out);
+  assert.equal(checkPackage(out).name, 'anderson');
+  assert.deepEqual(fs.readFileSync(path.join(out, 'theme/assets/login-background.png')), fs.readFileSync(path.join(source, 'assets/login-reference.png')));
+  const read = p => fs.readFileSync(path.join(out, p));
+  assert.match(read('theme/colors.toml').toString(), /background = "#0E1822"/);
+  assert.deepEqual(read('plugins/megacity.lock/lock-emblem.png'), fs.readFileSync(path.join(source, 'assets/lock-emblem.png')));
+  assert.deepEqual(read('sddm/anderson/background.png'), fs.readFileSync(path.join(source, 'assets/login-reference.png')));
+  assert.match(read('sddm/anderson/LoginForm.qml').toString(), /PSI DIVISION/);
+  const config = JSON.parse(fs.readFileSync(path.join(source, 'variant.json')));
+  config.colors.accent = '#115577';
+  fs.writeFileSync(path.join(source, 'variant.json'), JSON.stringify(config));
+  buildVariant(source, out);
+  assert.match(read('theme/colors.toml').toString(), /selection_background = "#115577"/);
 });

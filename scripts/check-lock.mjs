@@ -18,6 +18,8 @@ try {
   const themePath = path.join(fixtureHome, '.local/state/omarchy/current/theme');
   fs.mkdirSync(themePath, { recursive: true });
   for (const name of ['colors.toml', 'shell.toml']) fs.copyFileSync(path.join(root, 'theme', name), path.join(themePath, name));
+  fs.mkdirSync(path.join(themePath, 'assets'));
+  fs.copyFileSync(path.join(root, 'theme/assets/login-background.png'), path.join(themePath, 'assets/login-background.png'));
   const fontSource = path.join(process.env.HOME, '.config/fontconfig/fonts.conf');
   if (fs.existsSync(fontSource)) {
     const fontTarget = path.join(fixtureHome, '.config/fontconfig/fonts.conf');

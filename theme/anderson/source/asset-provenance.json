@@ -1,0 +1,20 @@
+{
+  "artworkLicense": "CC0-1.0",
+  "assets": [
+    {
+      "file": "assets/emblem.source.svg",
+      "sha256": "ca99c114569269007a99bce05125c833fcc17dc80f802b1101dddb6102cd71f1",
+      "origin": "Preserved selected Psi classic A artwork; lock SVG rendered by librsvg without redraw."
+    },
+    {
+      "file": "assets/lock-emblem.png",
+      "sha256": "4bca172aa614056f608a17af1c5d88960375e4bbe37780f1df1f71cc8ee5a279",
+      "origin": "Preserved selected Psi classic A artwork; lock SVG rendered by librsvg without redraw."
+    },
+    {
+      "file": "assets/login-reference.png",
+      "sha256": "01c5f2287bcfd9b7e7060e4183c020ebdd78178b30b63245f226696ec23b7467",
+      "origin": "Preserved selected Psi classic A artwork; lock SVG rendered by librsvg without redraw."
+    }
+  ]
+}

@@ -126,7 +126,9 @@
     "shell.image-picker.scrim": "$background",
     "shell.image-picker.text": "$foreground",
     "shell.image-picker.selected-border": "$accent",
-    "shell.image-picker.unselected-border": "$foreground"
+    "shell.image-picker.unselected-border": "$foreground",
+    "shell.lock.clock-color": "$red",
+    "shell.lock.date-color": "$accent"
   },
   "alpha": {
     "shell.bar.background-alpha": 0.9,
@@ -167,6 +169,7 @@
     "shell.image-picker.unselected-border-alpha": 0.28,
     "effects.scrim": 0.35,
     "effects.terminal-background-alpha": 0.92,
-    "effects.application-background-alpha": 1
+    "effects.application-background-alpha": 1,
+    "shell.lock.clock-scrim-alpha": 0
   }
 }

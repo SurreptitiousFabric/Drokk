@@ -33,6 +33,44 @@ export function transitionShell(config, active) {
   return next;
 }
 
+const positionedWidgets = ['omarchy.clock', 'omarchy.weather', 'omarchy.system-update'];
+const nativeId = id => widgetKinds.some(k => id === 'megacity.' + k) ? id.replace('megacity.', 'omarchy.') : id;
+const layoutIds = layout => Object.fromEntries(Object.entries(layout).map(([section, entries]) => [section, entries.map(e => nativeId(e.id))]));
+
+// Move existing entries, retaining their options and every unrelated widget.
+function placeWidgets(layout, template) {
+  const entries = new Map();
+  const owned = new Set(Object.values(template).flat().filter(id => positionedWidgets.includes(id)));
+  for (const [section, items] of Object.entries(layout)) {
+    for (const item of items) if (owned.has(nativeId(item.id))) entries.set(nativeId(item.id), item);
+    layout[section] = items.filter(item => !owned.has(nativeId(item.id)));
+  }
+  for (const [section, ids] of Object.entries(template)) {
+    layout[section] ??= [];
+    for (let i = ids.length - 1; i >= 0; i--) {
+      const item = entries.get(ids[i]);
+      if (!item) continue;
+      const items = layout[section];
+      const following = ids.slice(i + 1).find(id => items.some(e => nativeId(e.id) === id));
+      const preceding = ids.slice(0, i).findLast(id => items.some(e => nativeId(e.id) === id));
+      const index = following ? items.findIndex(e => nativeId(e.id) === following)
+        : preceding ? items.findIndex(e => nativeId(e.id) === preceding) + 1 : items.length;
+      items.splice(index, 0, item);
+      entries.delete(ids[i]);
+    }
+  }
+}
+
+function layoutUnchanged(layout, applied) {
+  const current = layoutIds(layout), known = new Set(Object.values(applied).flat());
+  const present = new Set(Object.values(current).flat());
+  for (const section of new Set([...Object.keys(applied), ...Object.keys(current)])) {
+    if (JSON.stringify((current[section] ?? []).filter(id => known.has(id))) !==
+        JSON.stringify((applied[section] ?? []).filter(id => present.has(id)))) return false;
+  }
+  return true;
+}
+
 export function transitionText(text, edit, active) {
   const from = active ? edit.before : edit.after;
   const to = active ? edit.after : edit.before;
@@ -86,6 +124,19 @@ export function applySession(home, theme, settings, enabled, shellLifecycle) {
   const shell = read('.config/omarchy/shell.json');
   const config = JSON.parse(shell.before);
   const next = transitionShell(config, active);
+  let barLayoutBefore = previous.barLayoutBefore, barLayoutApplied = previous.barLayoutApplied;
+  if (profile.barLayout && active && !previous.active && next.bar?.layout) {
+    barLayoutBefore = layoutIds(next.bar.layout);
+    placeWidgets(next.bar.layout, {
+      left: ['omarchy.menu', 'omarchy.clock', 'omarchy.system-update', 'omarchy.workspaces'],
+      center: ['omarchy.weather', 'omarchy.indicators', 'omarchy.keyboard-layout'],
+    });
+    barLayoutApplied = layoutIds(next.bar.layout);
+  } else if (!active && previous.active && barLayoutBefore && next.bar?.layout) {
+    if (layoutUnchanged(next.bar.layout, barLayoutApplied)) placeWidgets(next.bar.layout, barLayoutBefore);
+    else preserved.push('Bar layout changed while Drokk was active; preserving user positions');
+    barLayoutBefore = undefined; barLayoutApplied = undefined;
+  }
   let transparentBefore = previous.transparentBefore;
   if (profile.transparentBar && (active !== previous.active || (active && theme !== previous.theme)) && next.bar) {
     if (active) {
@@ -127,7 +178,7 @@ export function applySession(home, theme, settings, enabled, shellLifecycle) {
       }
   }
   const state = read('.local/state/drokk/session.json');
-  state.after = JSON.stringify({ active, enabled, settingsBefore, transparentBefore, theme, preserved }, null, 2) + '\n';
+  state.after = JSON.stringify({ active, enabled, settingsBefore, transparentBefore, barLayoutBefore, barLayoutApplied, theme, preserved }, null, 2) + '\n';
   const applied = [], appliedSettings = [];
   const shellFilesChanged=[...changes.values()].some(c=>c.before!==c.after &&
     (c===shell || c.file.startsWith(path.join(home,'.config/omarchy/plugins')+path.sep)));

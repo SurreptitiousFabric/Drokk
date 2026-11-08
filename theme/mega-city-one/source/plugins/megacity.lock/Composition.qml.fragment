@@ -11,13 +11,15 @@
       Text {
         width: parent.width; y: 0; height: 100
         text: Qt.formatTime(composition.now, "HH:mm")
-        color: Color.accent; font.family: Style.font.family; font.pixelSize: 92
+        color: Color.pick("lock.clock-color", Color.urgent); font.family: Style.font.family; font.pixelSize: 92
+        style: Color.pickAlpha("lock.clock-scrim-alpha", 0) > 0 ? Text.Raised : Text.Normal; styleColor: "#B3000000"
         horizontalAlignment: Text.AlignHCenter; verticalAlignment: Text.AlignVCenter
       }
       Text {
         width: parent.width; y: 105
         text: Qt.formatDate(composition.now, "ddd d MMM")
-        color: Color.accent; font.family: Style.font.family; font.pixelSize: 26
+        color: Color.pick("lock.date-color", Color.accent); font.family: Style.font.family; font.pixelSize: 26
+        style: Color.pickAlpha("lock.clock-scrim-alpha", 0) > 0 ? Text.Raised : Text.Normal; styleColor: "#B3000000"
         horizontalAlignment: Text.AlignHCenter
       }
       Image {

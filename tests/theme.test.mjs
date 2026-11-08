@@ -462,6 +462,9 @@ test('lock package retains exact original artwork and native authentication serv
   assert.equal(createHash('sha256').update(fs.readFileSync(path.join(f.source, 'assets/lock-reference.png'))).digest('hex'), '8b8edaeaa2f8964b1701b140966a5336fc840b3abe3e9c712fba5fb8dfb107c1');
   assert.deepEqual(fs.readFileSync(path.join(plugin, 'NativeService.qml')), fs.readFileSync(path.join(f.source, 'upstream/omarchy-lock/Service.qml')));
   assert.deepEqual(fs.readFileSync(path.join(plugin, 'lock-emblem.png')), fs.readFileSync(path.join(f.source, 'assets/lock-emblem.png')));
+  assert.deepEqual(fs.readFileSync(path.join(f.out, 'theme/assets/login-background.png')), fs.readFileSync(path.join(f.source, 'assets/login-reference.png')));
+  assert.match(fs.readFileSync(path.join(plugin, 'LockView.qml'), 'utf8'), /current\/theme\/assets\/login-background\.png/);
+  assert.doesNotMatch(fs.readFileSync(path.join(plugin, 'LockView.qml'), 'utf8'), /source: root.loadBackground \? root.fileUrl\(root.backgroundPath\)/);
 });
 
 test('folder overlay and complete cursor states are generated from shared sources', t => {

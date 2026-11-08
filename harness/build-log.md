@@ -1041,3 +1041,110 @@ Installed user-owned east-meg theme, registered companion profile, switched thro
 SDDM installation did not execute: pkexec returned 126, Request dismissed. Existing
 judge-death selection was preserved. Sov login package is checked and prepared,
 but is not installed/selected; desktop and lock are active Sov.
+
+### 2026-10-18 — Sov publication and Anderson activation
+
+User authorised commit/push, followed by full Anderson activation. Committed Sov
+as a3c33a5 and pushed main to SurreptitiousFabric/Drokk. Checkout had no Git author
+configured; used the prior repository author's identity for that command only.
+
+Added selected classic Psi A assets without redraw and preserved login artwork,
+with inherited Mega-City One colours. Package RED rejected unsupported Anderson;
+GREEN verified exact lock/login artwork, Psi Division heading and accent propagation.
+Native login submission/failure check: 3 passed. Lock input/disabled guard passed.
+Rendered lock and wide login plaque inspected. Existing lifecycle fixture includes
+Anderson. Bounded AI-slop review found no actionable findings.
+
+Installed Anderson and registered its owned companion overrides. Normal Omarchy
+switch retained wallpaper; state active=true/theme=anderson. Live menu/lock SVGs
+match package bytes; Hyprland configerrors empty. SDDM install did not execute:
+pkexec returned 126, Request dismissed. Noninteractive sudo also requires a password.
+Existing Judge Death login selection preserved; Anderson login is checked/prepared
+but not installed/selected. No authentication policy changes. Anderson changes
+remain uncommitted after the requested Sov publication.
+
+Final serial regression suite: mise run theme:test, 56 passed, 0 failed. Diff
+whitespace check passed. Sov publication HEAD and origin/main have zero divergence.
+
+### 2026-10-18 — login artwork on lock, desktop wallpaper preserved
+
+User requested lock/login background parity and the previous wallpaper after
+unlocking. Added the canonical login image to theme/assets/login-background.png
+and changed only the lock view's image source to the active theme asset. No
+wallpaper writes, lock hooks or new saved-state mechanism. Package RED failed on
+the missing image; GREEN passed exact-image and view-source checks. Rebuilt all
+five packages. Anderson native lock view input/clear and disabled guard passed,
+and its rendered login-art background was inspected.
+
+Applied while unlocked: validated installed LockView baseline, stopped shell,
+atomically installed each variant's background and the shared view, then restarted
+shell. Desktop wallpaper real path unchanged; Hyprland configerrors empty.
+Reviewed the bounded change against AI-slop: no actionable findings. Real
+lock/unlock remains user acceptance; no authentication code was changed.
+
+Final mise run theme:test: 56 passed, 0 failed. git diff --check passed.
+
+### 2026-10-18 — corrected missing active lock background
+
+User reported black lock background. The installed Anderson theme contained the
+image, but Omarchy's current/theme is a materialised copy, not a symlink; the prior
+live deployment omitted that active copy. Native Qt image check against the real
+active path failed (Image.Error 3 instead of Ready 1). Atomically installed the
+verified image into the active copy. Same native check then passed (3 tests).
+Image bytes equal both prepared and root-installed Anderson SDDM background.
+SDDM Current=anderson is now confirmed, superseding earlier pending-install status.
+No wallpaper, authentication, service or lock-state changes. Future normal theme
+switches copy the packaged asset automatically. This was a deployment omission;
+previous isolated checks did not establish active-path image availability.
+
+### 2026-10-18 — red lock time
+
+User requested time matching the card outline. Changed only the shared clock
+colour to Color.urgent, Omarchy's live mapping of palette red (#D3404B in Anderson).
+Date remains accent/gold pending clarification. Initial native preview rejected
+Color.red as undefined; corrected to the installed schema's Color.urgent before
+live application. Rebuilt Anderson; native lock view checks passed without colour
+binding warnings. Rendered clock inspected. Applied exact generated view while
+unlocked with bounded shell restart. git diff --check passed.
+
+### 2026-10-18 — Death lock clock contrast
+
+User approved bone-white time/date, subtle dark shadows and a soft gradient behind
+the clock. Added three shared lock palette controls; Death aliases clock/date to
+foreground and sets scrim alpha .65. Other themes retain red time/gold date and no
+scrim. Uses the existing Color.pick/pickAlpha interface; no service/authentication
+changes or raster edits. Package RED lacked clock-role output; GREEN passed exact
+bone roles and alpha. Rebuilt Death; native lock input checks passed and rendered
+view inspected without colour binding warnings. Bounded AI-slop review: no
+avoidable new owner or runtime machinery found.
+
+Applied while unlocked with baseline checks and bounded shell restart, updating
+both installed Death and the materialised active shell settings. Changed only the
+three expected keys and shared lock presentation. git diff --check passed.
+
+Final serial mise run theme:test: 56 passed, 0 failed. Native service remains
+unlocked/healthy after application; real lock/unlock visual acceptance is pending.
+
+### 2026-10-19 — restore bar arrangement when leaving Drokk
+
+User reported Lumon retaining Death's arrangement. Confirmed current Lumon uses
+native widget IDs and stock services; the hook had executed. Positions remained
+because Oct 18's clock/update/weather changes were explicitly treated as global
+personal preferences. User now requires theme ownership, superseding that choice.
+Two preserved pre-theme config snapshots agree on original left/center positions;
+used only those facts to repair Lumon via three native omarchy bar move commands,
+retaining all current right-side personal widgets and widget options.
+
+Added barLayout ownership to the existing profile/lifecycle. Session state captures
+original and applied ID positions, moving only existing clock/weather/update
+entries. Departure/disable restores original placements; variant switches retain
+one baseline. Unrelated additions survive; deliberate rearrangements are preserved
+with a warning. Existing transaction owns file/state rollback. Ownership RED failed
+on missing application; GREEN passed. Additional RED caught a newly added weather
+widget being removed on departure; restricted restoration to baseline widgets.
+
+Installed runtime/profile while Lumon active. Native Omarchy Lumon → Death → Lumon
+with background changes suppressed: Death arrangement applied; Lumon exact bar
+layout restored; wallpaper unchanged; session inactive and no preservation
+conflicts. All 60 serial tests passed. AI-slop review found no further actionable
+issues. git diff --check passed. No commit/push or login changes.

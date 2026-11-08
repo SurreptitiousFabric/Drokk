@@ -1,0 +1,27 @@
+{
+  "id": "anderson",
+  "name": "Anderson",
+  "kind": "Mega-City One / Psi-Division edition",
+  "emblem": "selected:psi-classic",
+  "art": 3,
+  "colors": {},
+  "selectedDesign": {
+    "option": "A",
+    "name": "Classic"
+  },
+  "selectedAuthentication": {
+    "option": "A",
+    "name": "Classic Psi arrangement",
+    "loginArtwork": "login-artwork.png",
+    "lockSource": "selected:psi-classic"
+  },
+  "loginPanelY": 350,
+  "alpha": {
+    "shell.bar.background-alpha": 0.9
+  },
+  "shell": {
+    "bar": {
+      "icon-font": 15
+    }
+  }
+}

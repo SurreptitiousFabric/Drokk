@@ -109,3 +109,13 @@ Death; do not infer a greeter selection change from preparation alone.
 ## East-Meg extension
 
 User authorised [Phase 11: East-Meg / Sov](harness/build/phase-11-east-meg.md) and live switching on 2026-10-18. This extends the preserved-variant exclusion for Sov.
+
+## Anderson extension
+
+User authorised [Phase 12: Anderson](harness/build/phase-12-anderson.md), including full live lock/login activation.
+
+## Theme-owned bar arrangement
+
+User authorised [Phase 13](harness/build/phase-13-bar-layout-cleanup.md) after
+observing Drokk's positions persist in Lumon. This supersedes the earlier decision
+to treat those moves as permanent personal preferences.

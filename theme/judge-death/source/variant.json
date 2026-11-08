@@ -15,7 +15,9 @@
     "blue": "#7D9280",
     "green": "#A5BC80",
     "red": "#C96168",
-    "art.folder": "$blue"
+    "art.folder": "$blue",
+    "shell.lock.clock-color": "$foreground",
+    "shell.lock.date-color": "$foreground"
   },
   "selectedAuthentication": {
     "option": "A",
@@ -28,5 +30,8 @@
     "option": "A",
     "name": "Pterodactyl",
     "study": "original insignia exploration"
+  },
+  "alpha": {
+    "shell.lock.clock-scrim-alpha": 0.65
   }
 }

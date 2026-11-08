@@ -11,7 +11,7 @@ export function buildVariant(source, out) {
     if (out === input || out.startsWith(input + path.sep) || input.startsWith(out + path.sep)) throw new Error('Variant output must not overlap source');
   }
   const variant = JSON.parse(fs.readFileSync(path.join(source, 'variant.json')));
-  if (!['brit-cit', 'judge-death', 'east-meg'].includes(variant.id)) throw new Error('Unsupported variant');
+  if (!['brit-cit', 'judge-death', 'east-meg', 'anderson'].includes(variant.id)) throw new Error('Unsupported variant');
   const temporary = fs.mkdtempSync(path.join(os.tmpdir(), 'drokk-source-'));
   try {
     const merged = path.join(temporary, 'source');
@@ -41,7 +41,13 @@ export function buildVariant(source, out) {
     const mainPath = path.join(merged, 'sddm/Main.qml');
     let main = fs.readFileSync(mainPath, 'utf8');
     if (!main.includes('id: form; x: 641; y: 273')) throw new Error('Shared login geometry changed');
-    main = main.replace('id: form; x: 641; y: 273', variant.id === 'judge-death' ? 'id: form; x: 416; y: 605' : variant.id === 'east-meg' ? 'id: form; x: 641; y: 273' : 'id: form; x: 666; y: 303; scale: 0.87; transformOrigin: Item.TopLeft');
+    const geometry = {
+      'judge-death': 'x: 416; y: 605',
+      'east-meg': 'x: 641; y: 273',
+      'anderson': 'x: 530; y: 365',
+      'brit-cit': 'x: 666; y: 303; scale: 0.87; transformOrigin: Item.TopLeft',
+    };
+    main = main.replace('id: form; x: 641; y: 273', 'id: form; ' + geometry[variant.id]);
     fs.writeFileSync(mainPath, main);
     const formPath = path.join(merged, 'sddm/LoginForm.qml');
     let form = fs.readFileSync(formPath, 'utf8');
@@ -66,6 +72,25 @@ export function buildVariant(source, out) {
         form = form.replace(before, after);
       }
     }
+    if (variant.id === 'anderson') {
+      const placements = [
+        ['width: 390; height: 369', 'width: 604; height: 217'],
+        ['y: 20', 'y: 10'], ['y: 53', 'y: 42'],
+        ['x: 25; y: 91', 'x: 115; y: 70'], ['x: 225; y: 91', 'x: 349; y: 70'],
+        ['x: 185; y: 78; width: 20; height: 28', 'x: 292; y: 57; width: 20; height: 24'],
+        ['x: 25; y: 125; width: 340; height: 40', 'x: 20; y: 92; width: 180; height: 40'],
+        ['x: 25; y: 177; width: 340; height: 42', 'x: 212; y: 92; width: 180; height: 40'],
+        ['x: 25; y: 239; width: 340; height: 43', 'x: 404; y: 92; width: 180; height: 40'],
+        ['x: 25; y: 316', 'x: 20; y: 160'],
+        ['x: 132; y: 306; width: 233; height: 35', 'x: 100; y: 151; width: 250; height: 35'],
+        ['x: 25; y: 285; width: 340; height: 20', 'x: 20; y: 192; width: 564; height: 20'],
+        ['JUSTICE DEPARTMENT', 'PSI DIVISION'],
+      ];
+      for (const [before, after] of placements) {
+        if (form.split(before).length !== 2) throw new Error('Shared login layout anchor changed: ' + before);
+        form = form.replace(before, after);
+      }
+    }
     fs.writeFileSync(formPath, form);
     return buildTheme(merged, out, variant.id);
   } finally {
@@ -76,7 +101,7 @@ export function buildVariant(source, out) {
 if (process.argv[1] && import.meta.url === pathToFileURL(path.resolve(process.argv[1])).href) {
   try {
     const id = process.argv[2] ?? 'brit-cit';
-    if (!['brit-cit', 'judge-death', 'east-meg'].includes(id)) throw new Error('Unsupported variant');
+    if (!['brit-cit', 'judge-death', 'east-meg', 'anderson'].includes(id)) throw new Error('Unsupported variant');
     const manifest = buildVariant(path.resolve('theme/' + id + '/source'), path.resolve('dist/' + id));
     console.log(`build: ${manifest.name}, ${manifest.files.length} files`);
   } catch (error) { console.error(error.message); process.exitCode = 1; }

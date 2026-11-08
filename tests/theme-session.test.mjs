@@ -202,12 +202,12 @@ test('Brit-Cit and Drokk exchange owned appearance and emblem files, then restor
   assert.equal(f.values['font-name'],"'My Font'");
 });
 
-test('Death, Sov, Brit-Cit and Drokk restore their own appearance before returning to stock', t => {
+test('Anderson, Death, Sov, Brit-Cit and Drokk restore their own appearance before returning to stock', t => {
   const f=fixture(t), profile=JSON.parse(f.read('.local/share/drokk/profile.json'));
   profile.transparentBar=true; profile.barTransparent=false;
-  profile.variants=Object.fromEntries([['judge-death','death'],['brit-cit','brit'],['east-meg','sov']].map(([id,label])=>[id,{barTransparent:false,edits:[{path:'.config/example',before:'font=original\n',after:`font=${label}\n`}]}]));
+  profile.variants=Object.fromEntries([['judge-death','death'],['brit-cit','brit'],['east-meg','sov'],['anderson','psi']].map(([id,label])=>[id,{barTransparent:false,edits:[{path:'.config/example',before:'font=original\n',after:`font=${label}\n`}]}]));
   f.write('.local/share/drokk/profile.json',JSON.stringify(profile));
-  for(const [id,label]of [['judge-death','death'],['east-meg','sov'],['brit-cit','brit'],['drokk','drokk'],['east-meg','sov']]){
+  for(const [id,label]of [['judge-death','death'],['east-meg','sov'],['anderson','psi'],['brit-cit','brit'],['drokk','drokk'],['east-meg','sov']]){
     const result=applySession(f.home,id,f.settings);assert.equal(result.active,true);assert.deepEqual(result.preserved,[]);
     assert.equal(f.read('.config/example'),`font=${label}\nuser=keep\n`);
     assert.equal(JSON.parse(f.read('.config/omarchy/shell.json')).bar.transparent,false);
@@ -216,4 +216,62 @@ test('Death, Sov, Brit-Cit and Drokk restore their own appearance before returni
   assert.equal(f.read('.config/example'),'font=original\nuser=keep\n');
   assert.equal(f.values['font-name'],"'My Font'");
   assert.equal('transparent' in JSON.parse(f.read('.config/omarchy/shell.json')).bar,false);
+});
+
+test('Drokk owns bar positions only while active and restores them around later personal widgets', t => {
+  const f=fixture(t),profile=JSON.parse(f.read('.local/share/drokk/profile.json'));
+  profile.barLayout=true;profile.variants={'judge-death':{edits:[]}};
+  f.write('.local/share/drokk/profile.json',JSON.stringify(profile));
+  const config={bar:{layout:{left:[{id:'omarchy.menu'},{id:'omarchy.workspaces'}],center:[{id:'omarchy.indicators'},{id:'omarchy.clock',format:'custom'},{id:'omarchy.keyboard-layout'},{id:'omarchy.weather'},{id:'omarchy.system-update'}],right:[{id:'personal.widget'}]}},plugins:[]};
+  f.write('.config/omarchy/shell.json',JSON.stringify(config));
+  applySession(f.home,'drokk',f.settings);
+  let bar=JSON.parse(f.read('.config/omarchy/shell.json'));
+  assert.deepEqual(bar.bar.layout.left.map(x=>x.id),['megacity.menu','omarchy.clock','omarchy.system-update','megacity.workspaces']);
+  assert.deepEqual(bar.bar.layout.center.map(x=>x.id),['omarchy.weather','omarchy.indicators','omarchy.keyboard-layout']);
+  bar.bar.layout.right.push({id:'new.personal'});f.write('.config/omarchy/shell.json',JSON.stringify(bar));
+  applySession(f.home,'judge-death',f.settings);
+  applySession(f.home,'lumon',f.settings);
+  bar=JSON.parse(f.read('.config/omarchy/shell.json'));
+  assert.deepEqual(bar.bar.layout.left,config.bar.layout.left);
+  assert.deepEqual(bar.bar.layout.center,config.bar.layout.center);
+  assert.deepEqual(bar.bar.layout.right,[{id:'personal.widget'},{id:'new.personal'}]);
+});
+
+test('leaving Drokk preserves deliberate bar moves made while it was active', t => {
+  const f=fixture(t),profile=JSON.parse(f.read('.local/share/drokk/profile.json'));
+  profile.barLayout=true;f.write('.local/share/drokk/profile.json',JSON.stringify(profile));
+  f.write('.config/omarchy/shell.json',JSON.stringify({bar:{layout:{left:[{id:'omarchy.menu'}],center:[{id:'omarchy.clock'}],right:[]}},plugins:[]}));
+  applySession(f.home,'drokk',f.settings);
+  const config=JSON.parse(f.read('.config/omarchy/shell.json'));
+  config.bar.layout.right.push(config.bar.layout.left.pop());
+  f.write('.config/omarchy/shell.json',JSON.stringify(config));
+  const result=applySession(f.home,'lumon',f.settings);
+  assert.equal(JSON.parse(f.read('.config/omarchy/shell.json')).bar.layout.right[0].id,'omarchy.clock');
+  assert.ok(result.preserved.some(s=>s.includes('Bar layout changed')));
+});
+
+test('failed bar activation restores positions and disable then enable captures a fresh baseline', t => {
+  const f=fixture(t),profile=JSON.parse(f.read('.local/share/drokk/profile.json'));
+  profile.barLayout=true;f.write('.local/share/drokk/profile.json',JSON.stringify(profile));
+  const original=JSON.stringify({bar:{layout:{left:[{id:'omarchy.menu'}],center:[{id:'omarchy.clock',format:'custom'}],right:[]}},plugins:[]});
+  f.write('.config/omarchy/shell.json',original);
+  assert.throws(()=>applySession(f.home,'drokk',{read:f.settings.read,write(){throw Error('settings failure');}}),/settings failure/);
+  assert.equal(f.read('.config/omarchy/shell.json'),original);
+  applySession(f.home,'drokk',f.settings);
+  applySession(f.home,'drokk',f.settings,false);
+  assert.deepEqual(JSON.parse(f.read('.config/omarchy/shell.json')).bar.layout.center,[{id:'omarchy.clock',format:'custom'}]);
+  applySession(f.home,'drokk',f.settings,true);
+  applySession(f.home,'lumon',f.settings);
+  assert.deepEqual(JSON.parse(f.read('.config/omarchy/shell.json')).bar.layout.center,[{id:'omarchy.clock',format:'custom'}]);
+});
+
+test('a bar widget first added during Drokk is not removed when leaving', t => {
+  const f=fixture(t),profile=JSON.parse(f.read('.local/share/drokk/profile.json'));
+  profile.barLayout=true;f.write('.local/share/drokk/profile.json',JSON.stringify(profile));
+  applySession(f.home,'drokk',f.settings);
+  const config=JSON.parse(f.read('.config/omarchy/shell.json'));
+  config.bar.layout.right=[{id:'omarchy.weather',units:'celsius'}];
+  f.write('.config/omarchy/shell.json',JSON.stringify(config));
+  applySession(f.home,'lumon',f.settings);
+  assert.deepEqual(JSON.parse(f.read('.config/omarchy/shell.json')).bar.layout.right,[{id:'omarchy.weather',units:'celsius'}]);
 });

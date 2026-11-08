@@ -81,3 +81,19 @@ Lock SVGs embed each exact PNG without tracing or changing its pixels. Initial
 registration can be prepared with `withVariantProfile` in session-profile.mjs;
 it is not yet a public installer command. Login selection is separate and privileged;
 see [authentication screens](authentication-screens.md).
+
+The lock view reads `assets/login-background.png` from the active theme, using the
+same source artwork as that variant's login. It does not change the desktop
+wallpaper; unlocking reveals the existing wallpaper. Stock themes use the stock
+lock service after companion cleanup.
+
+When updating an already active theme, update or reselect its materialised
+`~/.local/state/omarchy/current/theme` copy too. Verify its lock background image
+loads; updating only the installed theme directory does not refresh that copy.
+
+Drokk owns clock, weather and update-widget placement only while its companions
+are active. Activation captures the existing positions; leaving or disabling
+restores them while retaining widget options and unrelated additions. A deliberate
+layout rearrangement made while active is preserved and reported rather than
+silently overwritten. Switching between Drokk variants retains the same original
+baseline. Bar layout changes are not permanent personal configuration.

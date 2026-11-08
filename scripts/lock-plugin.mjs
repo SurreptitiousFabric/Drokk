@@ -13,6 +13,7 @@ export function lockPluginFiles(source) {
     result[name] = bytes.toString('utf8');
   }
   const replacements = [
+    ['source: root.loadBackground ? root.fileUrl(root.backgroundPath) : ""', 'source: root.loadBackground ? root.fileUrl(Quickshell.env("HOME") + "/.local/state/omarchy/current/theme/assets/login-background.png") : ""'],
     ['import QtQuick\n', 'import QtQuick\nimport Quickshell\n'],
     ['readonly property int fieldWidth: 381', 'readonly property int fieldWidth: Math.min(344, root.width - 32)'],
     ['readonly property int fieldHeight: 67', 'readonly property int fieldHeight: 50'],
@@ -29,6 +30,20 @@ export function lockPluginFiles(source) {
     if (view.split(before).length !== 2) throw new Error(`Lock view anchor changed: ${before}`);
     view = view.replace(before, after);
   }
+  const backgroundAnchor = '    MouseArea {\n      anchors.fill: parent\n      hoverEnabled: true';
+  if (view.split(backgroundAnchor).length !== 2) throw new Error('Lock background anchor changed');
+  view = view.replace(backgroundAnchor, `    Rectangle {
+      anchors.fill: parent
+      opacity: Color.pickAlpha("lock.clock-scrim-alpha", 0)
+      visible: opacity > 0
+      gradient: Gradient {
+        GradientStop { position: 0; color: "#000000" }
+        GradientStop { position: 0.35; color: "#B3000000" }
+        GradientStop { position: 0.65; color: "transparent" }
+      }
+    }
+
+` + backgroundAnchor);
   const composition = fs.readFileSync(path.join(source, 'plugins/megacity.lock/Composition.qml.fragment'), 'utf8');
   const anchor = '    BorderSurface {\n      id: inputField';
   if (view.split(anchor).length !== 2) throw new Error('Lock input anchor changed');

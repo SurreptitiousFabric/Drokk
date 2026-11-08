@@ -44,3 +44,10 @@ the original flat pterodactyl sheet crop without tracing; lock PNG removes squar
 viewport padding. Login relief was regenerated with the original pterodactyl relief
 as reference. New lower crest required the form at x416/y605, 840x145; controls
 remain native and readable. Old canonical images preserved in the design archive.
+
+Clock contrast follow-up: user approved bone-white time/date with dark shadow and
+a soft dark gradient. Shared lock presentation reads palette clock/date roles and
+scrim alpha; defaults retain other themes' red time/gold date without a scrim.
+Death overrides both text roles to foreground and scrim alpha to .65. Artwork is
+unchanged. Native view inspected and applied while unlocked to installed and active
+theme shell settings plus the shared view; wallpaper unaffected.
